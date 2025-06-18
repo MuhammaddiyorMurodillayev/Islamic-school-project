@@ -20,19 +20,19 @@ const LanguageSelector: React.FC = () => {
       code: 'uz',
       name: 'Uzbek',
       nativeName: 'O\'zbekcha',
-      flag: '🇺🇿'
+      flag: 'https://flagcdn.com/w40/uz.png'
     },
     {
       code: 'ru',
       name: 'Russian',
       nativeName: 'Русский',
-      flag: '🇷🇺'
+      flag: 'https://flagcdn.com/w40/ru.png'
     },
     {
       code: 'en',
       name: 'English',
       nativeName: 'English',
-      flag: '🇺🇸'
+      flag: 'https://flagcdn.com/w40/us.png'
     }
   ];
 
@@ -114,9 +114,12 @@ const LanguageSelector: React.FC = () => {
         aria-haspopup="listbox"
         aria-label="Select language"
       >
-        <span className="text-lg mr-2" role="img" aria-label={`${currentLanguage.name} flag`}>
-          {currentLanguage.flag}
-        </span>
+        <img
+          src={currentLanguage.flag}
+          alt={`${currentLanguage.name} flag`}
+          className="w-5 h-4 mr-2 rounded-sm object-cover shadow-sm"
+          loading="lazy"
+        />
         <span className="hidden sm:inline mr-2">
           {currentLanguage.nativeName}
         </span>
@@ -168,10 +171,13 @@ const LanguageSelector: React.FC = () => {
                 role="option"
                 aria-selected={language === lang.code}
               >
-                <span className="text-lg" role="img" aria-label={`${lang.name} flag`}>
-                  {lang.flag}
-                </span>
-                <div className="flex flex-col">
+                <img
+                  src={lang.flag}
+                  alt={`${lang.name} flag`}
+                  className="w-6 h-4 rounded-sm object-cover shadow-sm flex-shrink-0"
+                  loading="lazy"
+                />
+                <div className="flex flex-col flex-1">
                   <span className="font-medium">
                     {lang.nativeName}
                   </span>
