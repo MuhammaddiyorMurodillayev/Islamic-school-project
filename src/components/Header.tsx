@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
+  const { t } = useLanguage();
   const location = useLocation();
 
   const navigation = [
@@ -17,33 +18,6 @@ const Header: React.FC = () => {
     { name: t('gallery'), href: '/gallery' },
     { name: t('news'), href: '/news' },
     { name: t('contact'), href: '/contact' },
-  ];
-
-  const languages = [
-    {
-      code: 'en',
-      name: 'ENG',
-      flag: '🇺🇸',
-      fullName: 'English',
-      bgStyle: 'linear-gradient(to bottom, #B22234 0%, #B22234 7.69%, #FFFFFF 7.69%, #FFFFFF 15.38%, #B22234 15.38%, #B22234 23.08%, #FFFFFF 23.08%, #FFFFFF 30.77%, #B22234 30.77%, #B22234 38.46%, #FFFFFF 38.46%, #FFFFFF 46.15%, #B22234 46.15%, #B22234 53.85%, #FFFFFF 53.85%, #FFFFFF 61.54%, #B22234 61.54%, #B22234 69.23%, #FFFFFF 69.23%, #FFFFFF 76.92%, #B22234 76.92%, #B22234 84.62%, #FFFFFF 84.62%, #FFFFFF 92.31%, #B22234 92.31%, #B22234 100%), radial-gradient(circle at 12.5% 25%, #3C3B6E 0%, #3C3B6E 40%, transparent 40%)',
-      textColor: '#FFFFFF'
-    },
-    { 
-      code: 'uz', 
-      name: 'UZB', 
-      flag: '🇺🇿',
-      fullName: 'O\'zbekcha',
-      bgStyle: 'linear-gradient(to bottom, #0099B5 0%, #0099B5 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #1EB53A 66.66%, #1EB53A 100%)',
-      textColor: '#000000' 
-    },
-    { 
-      code: 'ru', 
-      name: 'RUS', 
-      flag: '🇷🇺',
-      fullName: 'Русский',
-      bgStyle: 'linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 33.33%, #0039A6 33.33%, #0039A6 66.66%, #D52B1E 66.66%, #D52B1E 100%)',
-      textColor: '#000000'
-    }
   ];
 
   return (
@@ -84,43 +58,10 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* Language Toggle & CTA - Fixed width container */}
+          {/* Language Selector & CTA - Fixed width container */}
           <div className="flex items-center space-x-4 flex-shrink-0">
-            {/* Language Selector */}
-            <div className="flex items-center space-x-2">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => setLanguage(lang.code as 'en' | 'uz' | 'ru')}
-                  className={`relative w-12 h-12 rounded-full border-2 transition-all duration-300 transform hover:scale-110 group ${
-                    language === lang.code
-                      ? 'border-emerald-500 shadow-lg scale-110 ring-2 ring-emerald-200'
-                      : 'border-gray-300 hover:border-emerald-400 shadow-md'
-                  }`}
-                  style={{
-                    background: lang.bgStyle,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                  title={lang.fullName}
-                >
-                  <span 
-                    className="absolute inset-0 flex items-center justify-center text-xs font-bold drop-shadow-lg tracking-wide"
-                    style={{ color: lang.textColor }}
-                  >
-                    {lang.name}
-                  </span>
-                  {language === lang.code && (
-                    <div className="absolute inset-0 bg-emerald-500 bg-opacity-10 rounded-full"></div>
-                  )}
-                  
-                  {/* Tooltip */}
-                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                    {lang.fullName}
-                  </div>
-                </button>
-              ))}
-            </div>
+            {/* New Language Selector Component */}
+            <LanguageSelector />
 
             <Link
               to="/admissions"
@@ -160,40 +101,8 @@ const Header: React.FC = () => {
               
               {/* Mobile Language Selector */}
               <div className="px-3 py-4 border-t border-gray-200 mt-4">
-                <div className="flex items-center space-x-2 mb-3">
-                  <span className="text-sm font-medium text-gray-700">Language / Til / Язык:</span>
-                </div>
-                <div className="flex justify-center space-x-4">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code as 'en' | 'uz' | 'ru');
-                        setIsMenuOpen(false);
-                      }}
-                      className={`relative w-16 h-16 rounded-full border-2 transition-all duration-300 transform hover:scale-105 ${
-                        language === lang.code
-                          ? 'border-emerald-500 shadow-lg scale-105 ring-2 ring-emerald-200'
-                          : 'border-gray-300 hover:border-emerald-400 shadow-md'
-                      }`}
-                      style={{
-                        background: lang.bgStyle,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                      title={lang.fullName}
-                    >
-                      <span 
-                        className="absolute inset-0 flex items-center justify-center text-xs font-bold drop-shadow-lg tracking-wide"
-                        style={{ color: lang.textColor }}
-                      >
-                        {lang.name}
-                      </span>
-                      {language === lang.code && (
-                        <div className="absolute inset-0 bg-emerald-500 bg-opacity-10 rounded-full"></div>
-                      )}
-                    </button>
-                  ))}
+                <div className="flex items-center justify-center">
+                  <LanguageSelector />
                 </div>
               </div>
               
