@@ -99,7 +99,7 @@ const RegistrationForm: React.FC = () => {
         schoolYear: '2024-2025'
       };
 
-      const response = await fetch('https://hooks.zapier.com/hooks/catch/23232247/2v088oo/', {
+      const response = await fetch('https://eolu0ku36a9ofes.m.pipedream.net', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
