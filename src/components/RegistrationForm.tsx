@@ -197,7 +197,6 @@ const RegistrationForm: React.FC = () => {
               value={formData.studentFirstName}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="Enter student's first name"
             />
           </div>
 
@@ -213,7 +212,6 @@ const RegistrationForm: React.FC = () => {
               value={formData.studentLastName}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="Enter student's last name"
             />
           </div>
 
@@ -244,7 +242,6 @@ const RegistrationForm: React.FC = () => {
               value={formData.nationality}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="Enter nationality"
             />
           </div>
         </div>
@@ -261,7 +258,6 @@ const RegistrationForm: React.FC = () => {
             value={formData.residencyAddress}
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            placeholder="Enter full address"
           />
         </div>
 
@@ -296,7 +292,6 @@ const RegistrationForm: React.FC = () => {
               value={formData.languageAtHome}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="e.g., English, Uzbek, Arabic"
             />
           </div>
         </div>
@@ -313,7 +308,6 @@ const RegistrationForm: React.FC = () => {
               value={formData.motherName}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="Enter mother's full name"
             />
           </div>
 
@@ -328,7 +322,6 @@ const RegistrationForm: React.FC = () => {
               value={formData.fatherName}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="Enter father's full name"
             />
           </div>
         </div>
@@ -346,7 +339,6 @@ const RegistrationForm: React.FC = () => {
               value={formData.motherPhone}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="(123) 456-7890"
             />
           </div>
 
@@ -361,7 +353,6 @@ const RegistrationForm: React.FC = () => {
               value={formData.fatherPhone}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="(123) 456-7890"
             />
           </div>
         </div>
@@ -377,7 +368,6 @@ const RegistrationForm: React.FC = () => {
             value={formData.parentEmail}
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            placeholder="parent@example.com"
           />
         </div>
 
@@ -393,7 +383,6 @@ const RegistrationForm: React.FC = () => {
               value={formData.emergencyContact}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="Emergency contact name"
             />
           </div>
 
@@ -408,7 +397,6 @@ const RegistrationForm: React.FC = () => {
               value={formData.emergencyPhone}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="(123) 456-7890"
             />
           </div>
         </div>

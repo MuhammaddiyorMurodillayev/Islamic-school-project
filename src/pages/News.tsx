@@ -210,7 +210,6 @@ const News: React.FC = () => {
             <div className="flex gap-4">
               <input
                 type="email"
-                placeholder={t('enterYourEmail')}
                 className="flex-1 px-4 py-3 rounded-md border-0 focus:outline-none focus:ring-2 focus:ring-emerald-300"
               />
               <button className="px-6 py-3 bg-white text-emerald-600 rounded-md font-medium hover:bg-gray-50 transition-colors duration-200">
