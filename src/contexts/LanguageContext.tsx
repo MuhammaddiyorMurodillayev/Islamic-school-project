@@ -46,9 +46,9 @@ const translations = {
     // About Us
     aboutTitle: 'About Al-Quran Islamic School',
     mission: 'Our Mission',
-    missionText: 'To provide quality Islamic education that nurtures young minds while instilling strong Islamic values and academic excellence.',
+    missionText: 'To provide quality Islamic education that nurtures young minds while instilling strong Islamic values and academic excellence.Our commitment extends beyond traditional academics to encompass the spiritual, moral, and intellectual development of each child. We strive to create confident, caring, and capable Muslim citizens who will contribute positively to society.',
     philosophy: 'Our Philosophy',
-    philosophyText: 'We believe in creating a supportive learning environment where children can grow spiritually, academically, and socially.',
+    philosophyText: 'We believe in creating a supportive learning environment where children can grow spiritually, academically, and socially.We embrace diverse learning styles and celebrate the unique gifts each child brings to our community. Through small class sizes and personalized attention, we ensure every student reaches their full potential.',
     ourCoreValues: 'Our Core Values',
     coreValuesDesc: 'The principles that guide everything we do',
     faithBasedLearning: 'Faith-Based Learning',
@@ -227,7 +227,7 @@ const translations = {
     // About Us
     aboutTitle: 'Al-Quran Islom maktabi haqida',
     mission: 'Bizning vazifamiz',
-    missionText: 'Yosh onglarni tarbiyalab, kuchli islom qadrliyatlari va akademik mukammallikni singdiruvchi sifatli islom ta\'limini berish.',
+    missionText: 'Yosh onglarni tarbiyalab, kuchli islom qadrliyatlari va akademik mukammallikni singdiruvchi sifatli islom ta\'limini berish. Bizning majburiyatimiz har bir bolaning ma\'naviy, axloqiy va intellektual rivojlanishini qamrab olish uchun an\'anaviy akademiklardan tashqariga chiqadi. Biz jamiyatga ijobiy hissa qo\'shadigan o\'ziga ishongan, g\'amxo\'r va qobiliyatli musulmon fuqarolarni yaratishga intilamiz.',
     philosophy: 'Bizning falsafamiz',
     philosophyText: 'Biz bolalar ruhiy, akademik va ijtimoiy jihatdan o\'sa oladigan qo\'llab-quvvatlovchi ta\'lim muhitini yaratishga ishonamiz.',
     ourCoreValues: 'Bizning asosiy qadriyatlarimiz',
@@ -408,7 +408,7 @@ const translations = {
     // About Us
     aboutTitle: 'Об исламской школе Аль-Коран',
     mission: 'Наша миссия',
-    missionText: 'Предоставить качественное исламское образование, которое воспитывает молодые умы, прививая сильные исламские ценности и академическое превосходство.',
+    missionText: 'Предоставить качественное исламское образование, которое воспитывает молодые умы, прививая сильные исламские ценности и академическое превосходство. Наша приверженность выходит за рамки традиционных академических дисциплин, охватывая духовное, моральное и интеллектуальное развитие каждого ребенка. Мы стремимся создать уверенных, заботливых и способных мусульманских граждан, которые внесут позитивный вклад в общество.',
     philosophy: 'Наша философия',
     philosophyText: 'Мы верим в создание поддерживающей учебной среды, где дети могут расти духовно, академически и социально.',
     ourCoreValues: 'Наши основные ценности',
