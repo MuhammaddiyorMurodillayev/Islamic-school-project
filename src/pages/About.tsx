@@ -51,13 +51,13 @@ const About: React.FC = () => {
             <div className="bg-emerald-50 p-8 rounded-lg">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('mission')}</h2>
               <p className="text-gray-700 leading-relaxed">
-                {t('missionText')} Our commitment extends beyond traditional academics to encompass the spiritual, moral, and intellectual development of each child. We strive to create confident, caring, and capable Muslim citizens who will contribute positively to society.
+                {t('missionText')} 
               </p>
             </div>
             <div className="bg-blue-50 p-8 rounded-lg">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('philosophy')}</h2>
               <p className="text-gray-700 leading-relaxed">
-                {t('philosophyText')} We embrace diverse learning styles and celebrate the unique gifts each child brings to our community. Through small class sizes and personalized attention, we ensure every student reaches their full potential.
+                {t('philosophyText')} 
               </p>
             </div>
           </div>
