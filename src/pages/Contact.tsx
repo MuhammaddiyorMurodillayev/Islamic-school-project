@@ -2,16 +2,29 @@ import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
+interface ContactFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  inquiryType: string;
+  subject: string;
+  message: string;
+}
+
 const Contact: React.FC = () => {
   const { t } = useLanguage();
-  const [formData, setFormData] = useState({
-    name: '',
+  const [formData, setFormData] = useState<ContactFormData>({
+    fullName: '',
     email: '',
     phone: '',
+    inquiryType: '',
     subject: '',
-    message: '',
-    visitType: 'general'
+    message: ''
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const locations = [
     {
@@ -37,13 +50,116 @@ const Contact: React.FC = () => {
       ...prev,
       [name]: value
     }));
+    // Clear error when user starts typing
+    if (error) {
+      setError(null);
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+  const validateForm = (): boolean => {
+    const requiredFields: (keyof ContactFormData)[] = [
+      'fullName',
+      'email',
+      'phone',
+      'inquiryType',
+      'subject',
+      'message'
+    ];
+
+    for (const field of requiredFields) {
+      if (!formData[field].trim()) {
+        setError('Please fill in all required fields');
+        return false;
+      }
+    }
+
+    // Validate email format
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setError('Please enter a valid email address');
+      return false;
+    }
+
+    return true;
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Prepare data for submission
+      const submissionData = {
+        ...formData,
+        submissionDate: new Date().toISOString(),
+        formType: 'contact'
+      };
+
+      const response = await fetch('https://eop4tm9utu2mpym.m.pipedream.net', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Check if response is successful
+      const responseText = await response.text();
+      console.log('Submission response:', responseText);
+
+      setSubmitted(true);
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        inquiryType: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setError('There was an error submitting your message. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center px-4">
+        <div className="max-w-md w-full bg-green-50 border border-green-200 rounded-lg p-8 text-center">
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+          </div>
+          <h3 className="text-lg font-semibold text-green-800 mb-2">
+            Application Submitted Successfully!
+          </h3>
+          <p className="text-green-700 mb-6">
+            Thank you for your application. We will contact you soon to discuss the next steps.
+          </p>
+          <button
+            onClick={() => setSubmitted(false)}
+            className="text-green-600 hover:text-green-700 font-medium"
+          >
+            Submit Another Application
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -95,6 +211,17 @@ const Contact: React.FC = () => {
           </div>
           
           <div className="bg-white rounded-lg shadow-lg p-8">
+            {error && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                <div className="flex">
+                  <svg className="w-5 h-5 text-red-400 mt-0.5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p className="text-red-700 text-sm">{error}</p>
+                </div>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -103,9 +230,9 @@ const Contact: React.FC = () => {
                   </label>
                   <input
                     type="text"
-                    name="name"
+                    name="fullName"
                     required
-                    value={formData.name}
+                    value={formData.fullName}
                     onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   />
@@ -129,11 +256,12 @@ const Contact: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t('phone')}
+                    {t('phone')} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="tel"
                     name="phone"
+                    required
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
@@ -142,14 +270,16 @@ const Contact: React.FC = () => {
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t('inquiryType')}
+                    {t('inquiryType')} <span className="text-red-500">*</span>
                   </label>
                   <select
-                    name="visitType"
-                    value={formData.visitType}
+                    name="inquiryType"
+                    required
+                    value={formData.inquiryType}
                     onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   >
+                    <option value="">Select inquiry type...</option>
                     <option value="general">{t('generalInquiry')}</option>
                     <option value="tour">{t('scheduleTour')}</option>
                     <option value="enrollment">{t('enrollmentInformation')}</option>
@@ -160,11 +290,12 @@ const Contact: React.FC = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {t('subject')}
+                  {t('subject')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="subject"
+                  required
                   value={formData.subject}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
@@ -185,12 +316,31 @@ const Contact: React.FC = () => {
                 ></textarea>
               </div>
 
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm text-gray-600">
+                  <span className="text-red-500">*</span> All fields are required. By submitting this form, you agree to be contacted by Al-Quran Islamic School regarding your inquiry.
+                </p>
+              </div>
+
               <button
                 type="submit"
-                className="w-full bg-emerald-600 text-white py-3 px-4 rounded-md font-medium hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-colors duration-200 flex items-center justify-center"
+                disabled={isSubmitting}
+                className="w-full bg-emerald-600 text-white py-3 px-4 rounded-md font-medium hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center"
               >
-                <Send className="h-5 w-5 mr-2" />
-                {t('sendMessage')}
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-5 w-5 mr-2" />
+                    {t('sendMessage')}
+                  </>
+                )}
               </button>
             </form>
           </div>
