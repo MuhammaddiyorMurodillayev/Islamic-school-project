@@ -57,7 +57,7 @@ const About: React.FC = () => {
             <div className="bg-blue-50 p-8 rounded-lg">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('philosophy')}</h2>
               <p className="text-gray-700 leading-relaxed">
-                {t('philosophyText')} 
+                {t('philosophyText')}  
               </p>
             </div>
           </div>
