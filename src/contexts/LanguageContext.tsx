@@ -229,7 +229,7 @@ const translations = {
     mission: 'Bizning vazifamiz',
     missionText: 'Yosh onglarni tarbiyalab, kuchli islom qadrliyatlari va akademik mukammallikni singdiruvchi sifatli islom ta\'limini berish. Bizning majburiyatimiz har bir bolaning ma\'naviy, axloqiy va intellektual rivojlanishini qamrab olish uchun an\'anaviy akademiklardan tashqariga chiqadi. Biz jamiyatga ijobiy hissa qo\'shadigan o\'ziga ishongan, g\'amxo\'r va qobiliyatli musulmon fuqarolarni yaratishga intilamiz.',
     philosophy: 'Bizning falsafamiz',
-    philosophyText: 'Biz bolalar ruhiy, akademik va ijtimoiy jihatdan o\'sa oladigan qo\'llab-quvvatlovchi ta\'lim muhitini yaratishga ishonamiz.',
+    philosophyText: 'Biz bolalar ruhiy, akademik va ijtimoiy jihatdan o\'sa oladigan qo\'llab-quvvatlovchi ta\'lim muhitini yaratishga ishonamiz. Biz turli xil ta\'lim uslublarini qabul qilamiz va har bir bolaning jamiyatimizga olib keladigan noyob sovg\'alarini nishonlaymiz. Kichik sinflar va shaxsiy e\'tibor orqali biz har bir talaba o\'zining to\'liq salohiyatiga erishishini ta\'minlaymiz.',
     ourCoreValues: 'Bizning asosiy qadriyatlarimiz',
     coreValuesDesc: 'Bizning barcha ishlarimizni yo\'naltiruvchi tamoyillar',
     faithBasedLearning: 'E\'tiqodga asoslangan ta\'lim',
