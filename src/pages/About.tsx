@@ -4,6 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const About: React.FC = () => {
   const { t } = useLanguage();
+  const currentLanguage = useLanguage().language;
 
   const values = [
     {
@@ -38,7 +39,12 @@ const About: React.FC = () => {
               {t('aboutTitle')}
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Dedicated to providing quality Islamic education that prepares children for success in both this world and the hereafter.
+              {currentLanguage === 'en'? 
+              'Dedicated to providing quality Islamic education that prepares children for success in both this world and the hereafter.':
+              currentLanguage === 'uz'?
+              'Farzandlarni bu dunyoda ham, oxiratda ham muvaffaqiyatga tayyorlaydigan sifatli islomiy taʼlim berishga bagʻishlangan.':
+              'Цель проекта — предоставление качественного исламского образования, которое готовит детей к успеху как в этом мире, так и в загробной жизни.'
+              }
             </p>
           </div>
         </div>
@@ -92,13 +98,13 @@ const About: React.FC = () => {
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">{t('ourStory')}</h2>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                Al-Quran Islamic School was founded with a vision to provide exceptional Islamic education to the Muslim community in Ohio. Our founders recognized the need for a school that would seamlessly integrate Islamic values with academic excellence.
+                {t('ourHistoryText1')}
               </p>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                Since our establishment, we have grown from a small community initiative to a respected educational institution serving families throughout the region. Our dedicated team of educators shares a common commitment to nurturing the next generation of Muslim leaders.
+                {t('ourHistoryText2')}
               </p>
               <p className="text-gray-700 leading-relaxed">
-                Today, we continue to uphold our founding principles while adapting to meet the evolving needs of our students and community. We are proud to be a non-charter school that maintains high standards of academic and Islamic education.
+                {t('ourHistoryText3')}
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Instagram, Send } from 'lucide-react';
+import { Phone, Mail, Facebook, Instagram, Send } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer: React.FC = () => {
@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-300 text-sm">
-              Al-Quran Islamic School is a private Islamic educational institution in Ohio, USA, offering a nurturing and faith-centered learning environment for children from Pre-Kindergarten to 3rd Grade. Our mission is to provide high-quality academic instruction integrated with Islamic teachings, helping children grow intellectually, spiritually, and morally. 
+              {t('schoolDescription')}
             </p>
           </div>
 

@@ -204,7 +204,7 @@ const LanguageSelector: React.FC = () => {
       )}
 
       {/* Custom CSS for animations */}
-      <style jsx>{`
+      {/* <style jsx>{`
         @keyframes slideIn {
           from {
             opacity: 0;
@@ -215,7 +215,7 @@ const LanguageSelector: React.FC = () => {
             transform: translateY(0) scale(1);
           }
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 };

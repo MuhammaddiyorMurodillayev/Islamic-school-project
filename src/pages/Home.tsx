@@ -5,22 +5,23 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const Home: React.FC = () => {
   const { t } = useLanguage();
+  const currentLanguage = useLanguage().language;
 
   const quickFacts = [
     {
       icon: <GraduationCap className="h-8 w-8 text-emerald-600" />,
       title: t('preK3rd'),
-      description: 'Ages 3-9'
+      description: (currentLanguage === 'en'? 'Ages 3-9' : currentLanguage === 'uz'? '3-9 yosh' : 'Возраст 3-9 лет')
     },
     {
       icon: <MapPin className="h-8 w-8 text-emerald-600" />,
       title: t('ohioLocation'),
-      description: '3 Convenient Locations'
+      description: (currentLanguage === 'en'? '3 Convenient Locations' : currentLanguage === 'uz'? '3 ta qulay joylar' : '3 удобных места')
     },
     {
       icon: <Users className="h-8 w-8 text-emerald-600" />,
       title: t('smallClasses'),
-      description: '12-15 Students Per Class'
+      description: (currentLanguage === 'en'? '12-15 Students Per Class' : currentLanguage === 'uz'? 'Har bir sinfda 12-15 nafar talaba' : '12-15 учеников в классе')
     },
     {
       icon: <Clock className="h-8 w-8 text-emerald-600" />,

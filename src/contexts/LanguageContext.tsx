@@ -21,7 +21,7 @@ const translations = {
     gallery: 'Gallery',
     news: 'News & Blog',
     contact: 'Contact',
-    
+
     // Home page
     welcome: 'Welcome to Al-Quran Islamic School',
     welcomeSubtitle: 'Excellence in Islamic Education for PreK-3rd Grade',
@@ -42,7 +42,7 @@ const translations = {
     ourSchoolLifeDesc: 'Experience the joy of learning in our nurturing environment',
     readyToJoin: 'Ready to Join Our School Family?',
     readyToJoinDesc: 'Contact us today to schedule a tour and learn more about our programs.',
-    
+
     // About Us
     aboutTitle: 'About Al-Quran Islamic School',
     mission: 'Our Mission',
@@ -64,7 +64,11 @@ const translations = {
     yearsOfService: 'Years of Service',
     studentsServed: 'Students Served',
     dedicatedStaff: 'Dedicated Staff',
-    
+    schoolDescription: 'Al-Quran Islamic School is a private Islamic educational institution in Ohio, USA, offering a nurturing and faith-centered learning environment for children from Pre-Kindergarten to 3rd Grade. Our mission is to provide high-quality academic instruction integrated with Islamic teachings, helping children grow intellectually, spiritually, and morally.',
+    ourHistoryText1: 'Al-Quran Islamic School was founded with a vision to provide exceptional Islamic education to the Muslim community in Ohio. Our founders recognized the need for a school that would seamlessly integrate Islamic values with academic excellence.',
+    ourHistoryText2: 'Since our establishment, we have grown from a small community initiative to a respected educational institution serving families throughout the region. Our dedicated team of educators shares a common commitment to nurturing the next generation of Muslim leaders.',
+    ourHistoryText3: 'Today, we continue to uphold our founding principles while adapting to meet the evolving needs of our students and community. We are proud to be a non-charter school that maintains high standards of academic and Islamic education.',
+
     // Programs
     programsTitle: 'Our Programs',
     kindergarten: 'Kindergarten Program',
@@ -87,7 +91,37 @@ const translations = {
     integratedLearningDesc: 'Islamic values woven throughout all subjects',
     structuredEnvironment: 'Structured Environment',
     structuredEnvironmentDesc: 'Consistent routines that promote learning and growth',
-    
+
+    // Programs Features
+    preKDescription: 'Foundation building through play-based learning and early Islamic education',
+    preKF1: 'Basic Arabic letters',
+    preKF2: 'Quran recitation',
+    preKF3: 'Social skills',
+    preKF4: 'Motor development',
+
+    kindergartenDescription: 'Comprehensive preparation for elementary education with Islamic values',
+    kindergartenF1: 'Reading readiness',
+    kindergartenF2: 'Math foundations',
+    kindergartenF3: 'Islamic stories',
+    kindergartenF4: 'Creative arts',
+
+    elementaryDescription: 'Full academic curriculum integrated with Islamic studies',
+    elementaryF1: 'Core subjects',
+    elementaryF2: 'Quran memorization',
+    elementaryF3: 'Arabic language',
+    elementaryF4: 'Science exploration',
+
+    madrasaDescription: 'Intensive Islamic education focusing on Quran and religious studies',
+    madrasaF1: 'Quran memorization',
+    madrasaF2: 'Islamic jurisprudence',
+    madrasaF3: 'Arabic grammar',
+    madrasaF4: 'Hadith studies',
+
+    curriculumDReading: 'Comprehensive literacy program with phonics-based approach',
+    curriculumDStem: 'Mathematics and science education with hands-on experiments',
+    curriculumDIslamicStudies: 'Quran, Hadith, Islamic history, and Arabic language',
+    curriculumDArts: 'Creative expression through art, music, and storytelling',
+
     // Admissions
     admissionsTitle: 'Admissions',
     howToApply: 'How to Apply',
@@ -105,7 +139,8 @@ const translations = {
     interviewProcessDesc: 'Brief interview with parents and student (age-appropriate)',
     enrollmentConfirmation: 'Enrollment Confirmation',
     enrollmentConfirmationDesc: 'Receive acceptance letter and complete enrollment process',
-    
+    reasonForRequest: 'All fields are required. By submitting this form, you agree to be contacted by Al-Quran Islamic School regarding your inquiry.',
+
     // Contact
     contactTitle: 'Contact Us',
     contactDesc: 'We\'d love to hear from you. Get in touch with us to learn more about our programs or schedule a visit.',
@@ -116,14 +151,24 @@ const translations = {
     schoolHours: 'School Hours',
     stayInformed: 'Stay Informed',
     stayInformedDesc: 'Subscribe to our newsletter to receive the latest news and updates directly in your inbox.',
-    
+    contactInquiryType: 'Select inquiry type...',
+
     // Gallery
     galleryDesc: 'Discover the vibrant life at Al-Quran Islamic School through photos of our students, classrooms, and activities.',
     classroomActivities: 'Classroom Activities',
     studentLife: 'Student Life',
     events: 'Events',
     all: 'All',
-    
+
+    // Gallery alts
+    galleryAlt1: 'Students learning in classroom',
+    galleryAlt2: 'Interactive learning session',
+    galleryAlt3: 'Happy students',
+    galleryAlt4: 'School activities',
+    galleryAlt5: 'Learning environment',
+    galleryAlt6: 'Student engagement',
+    galleryAlt7: 'Educational activities',
+
     // News
     newsDesc: 'Stay updated with the latest news, announcements, and insights from Al-Quran Islamic School.',
     featured: 'Featured',
@@ -131,7 +176,29 @@ const translations = {
     schoolUpdates: 'School Updates',
     values: 'Values',
     subscribe: 'Subscribe',
-    
+
+    // New articles
+    articlesTitle1: 'New STEM Program Launches This Fall',
+    articlesTitle2: 'Parent-Teacher Conference Success',
+    articlesTitle3: 'Islamic Heritage Month Celebration',
+    articlesTitle4: 'Reading Program Shows Outstanding Results',
+    articlesTitle5: 'Character Education: Building Strong Muslims',
+    articlesTitle6: 'Student Art Exhibition Showcases Creativity',
+
+    articlesExcerpt1: 'We are excited to introduce our enhanced STEM curriculum that will provide students with hands-on learning experiences in science, technology, engineering, and mathematics.',
+    articlesExcerpt2: 'Our recent parent-teacher conferences saw excellent attendance with meaningful discussions about student progress and collaborative planning for continued growth.',
+    articlesExcerpt3: 'Students and families came together to celebrate Islamic heritage through cultural presentations, traditional foods, and educational displays.',
+    articlesExcerpt4: 'Our phonics-based reading program continues to show remarkable improvements in student literacy rates across all grade levels.',
+    articlesExcerpt5: 'Learn about our approach to character development and how we integrate Islamic values into daily learning experiences.',
+    articlesExcerpt6: 'Our young artists displayed their creative works in our annual art exhibition, demonstrating the importance of creative expression in education.',
+
+    articleDate1: 'March 10, 2024',
+    articleDate2: 'March 5, 2024',
+    articleDate3: 'February 28, 2024',
+    articleDate4: 'February 20, 2024',
+    articleDate5: 'February 15, 2024',
+    articleDate6: 'February 10, 2024',
+
     // Parent Resources
     parentResourcesDesc: 'Everything parents need to stay informed and involved in their child\'s educational journey.',
     schoolCalendar: 'School Calendar',
@@ -154,7 +221,24 @@ const translations = {
     upcomingEventsDesc: 'Mark your calendars for these important school events',
     stayConnected: 'Stay Connected',
     stayConnectedDesc: 'Subscribe to our newsletter for regular updates about school activities and important announcements.',
-    
+
+    // Parent procedures Description
+    dropoffProceduresDesc: 'Students may be dropped off starting at 7:45 AM. Please use the designated drop-off area and remain in your vehicle. Staff will assist students exiting vehicles.',
+    pickupProceduresDesc: 'Regular dismissal begins at 3:30 PM. Please arrive promptly and display your pick-up tag. Late pick-ups may result in after-care charges.',
+
+    // Upcoming events
+    upcomingEventDate1: 'March 15',
+    upcomingEventDate2: 'March 22',
+    upcomingEventDate3: 'April 5',
+    upcomingEventDate4: 'April 12',
+    upcomingEventDate5: 'May 3',
+
+    upcomingEventName1: 'Parent-Teacher Conferences',
+    upcomingEventName2: 'Islamic Heritage Day',
+    upcomingEventName3: 'Science Fair',
+    upcomingEventName4: 'Spring Break Begins',
+    upcomingEventName5: 'Quran Recitation Competition',
+
     // Form fields
     studentFirstName: 'Student\'s First Name',
     studentLastName: 'Student\'s Last Name',
@@ -182,7 +266,7 @@ const translations = {
     subject: 'Subject',
     message: 'Message',
     sendMessage: 'Send Message',
-    
+
     // Common
     learnMore: 'Learn More',
     readMore: 'Read More',
@@ -191,6 +275,9 @@ const translations = {
     email: 'Email',
     address: 'Address',
     enterYourEmail: 'Enter your email',
+    submissionSuccess: 'Application Submitted Successfully!',
+    submissionSuccessDesc: 'Thank you for your application. We will contact you soon to discuss the next steps.',
+    backToContact: 'Submit Another Application',
   },
   uz: {
     // Navigation
@@ -202,7 +289,7 @@ const translations = {
     gallery: 'Galereya',
     news: 'Yangiliklar va blog',
     contact: 'Aloqa',
-    
+
     // Home page
     welcome: 'Al-Quran Islom maktabiga xush kelibsiz',
     welcomeSubtitle: 'Maktabgacha yoshdan 3-sinfgacha islom ta\'limida mukammallik',
@@ -223,7 +310,7 @@ const translations = {
     ourSchoolLifeDesc: 'Bizning g\'amxo\'r muhitimizda o\'rganish quvonchini his eting',
     readyToJoin: 'Bizning maktab oilamizga qo\'shilishga tayyormisiz?',
     readyToJoinDesc: 'Ekskursiya rejalashtirish va dasturlarimiz haqida ko\'proq ma\'lumot olish uchun bugun biz bilan bog\'laning.',
-    
+
     // About Us
     aboutTitle: 'Al-Quran Islom maktabi haqida',
     mission: 'Bizning vazifamiz',
@@ -245,7 +332,11 @@ const translations = {
     yearsOfService: 'Yillik xizmat',
     studentsServed: 'Xizmat ko\'rsatilgan talabalar',
     dedicatedStaff: 'Fidoyi xodimlar',
-    
+    schoolDescription: 'Al-Quron Islom maktabi AQShning Ogayo shtatidagi xususiy islom taʼlim muassasasi boʻlib, bolalar bogʻchasidan 3-sinfgacha boʻlgan bolalar uchun tarbiyaviy va eʼtiqodga asoslangan taʼlim muhitini taklif etadi. Bizning vazifamiz islom ta’limotlari bilan uyg‘unlashtirilgan yuqori sifatli akademik ta’lim berish, bolalarning intellektual, ma’naviy va axloqiy jihatdan o‘sishiga yordam berishdir.',
+    ourHistoryText1: 'Al-Qur\'on Islom maktabi Ogayo shtatidagi musulmonlar jamoasiga alohida islomiy ta\'lim berish niyatida tashkil etilgan. Muassislarimiz islomiy qadriyatlarni akademik mukammallik bilan uzviy bog‘laydigan maktab zarurligini tan oldilar.',
+    ourHistoryText2: 'Tashkil etilganimizdan beri biz kichik jamoat tashabbusidan butun mintaqadagi oilalarga xizmat ko\'rsatadigan obro\'li ta\'lim muassasasiga aylandik. Bizning fidoyi o‘qituvchilar jamoasi musulmon yetakchilarning keyingi avlodini tarbiyalashda umumiy majburiyatga ega.',
+    ourHistoryText3: 'Bugungi kunda biz asos solingan tamoyillarimizga sodiq qolgan holda, o‘quvchilarimiz va jamiyatimizning o‘zgarib borayotgan ehtiyojlariga moslashishda davom etmoqdamiz. Biz akademik va islomiy ta\'limning yuqori standartlarini qo\'llab-quvvatlaydigan nonizom maktab ekanligimizdan faxrlanamiz.',
+
     // Programs
     programsTitle: 'Bizning dasturlarimiz',
     kindergarten: 'Bog\'cha dasturi',
@@ -268,7 +359,37 @@ const translations = {
     integratedLearningDesc: 'Barcha fanlar bo\'ylab o\'rilgan islom qadriyatlari',
     structuredEnvironment: 'Tuzilgan muhit',
     structuredEnvironmentDesc: 'O\'rganish va o\'sishni rag\'batlantiruvchi izchil tartiblar',
-    
+
+    // Programs Features
+    preKDescription: 'O‘yin orqali dastlabki o‘quv va islomiy taʼlim asoslarini shakllantirish',
+    preKF1: 'Arab alifbosi asoslari',
+    preKF2: 'Qur\'on tilovati',
+    preKF3: 'Ijtimoiy ko‘nikmalar',
+    preKF4: 'Harakatlanish rivoji',
+
+    kindergartenDescription: 'Boshlang‘ich ta’limga islomiy qadriyatlar asosida to‘liq tayyorgarlik',
+    kindergartenF1: 'O‘qishga tayyorgarlik',
+    kindergartenF2: 'Matematik asoslar',
+    kindergartenF3: 'Islomiy hikoyalar',
+    kindergartenF4: 'Ijodiy san’at',
+
+    elementaryDescription: 'Islomiy taʼlim bilan integratsiyalashgan to‘liq o‘quv dasturi',
+    elementaryF1: 'Asosiy fanlar',
+    elementaryF2: 'Qur’on yodlash',
+    elementaryF3: 'Arab tili',
+    elementaryF4: 'Fan bilan tanishish',
+
+    madrasaDescription: 'Qur\'on va diniy ta\'limga yo\'naltirilgan intensiv islomiy ta\'lim',
+    madrasaF1: 'Qur\'on yodlash',
+    madrasaF2: 'Islomiy fiqh',
+    madrasaF3: 'Arab tili grammatikasi',
+    madrasaF4: 'Hadis ilmi / Hadislarni o‘rganish',
+
+    curriculumDReading: 'Fonetikaga asoslangan yondashuv bilan keng qamrovli savodxonlik dasturi.',
+    curriculumDStem: 'Amaliy tajribalar orqali matematika va tabiiy fanlar ta’limi.',
+    curriculumDIslamicStudies: 'Qur’on, Hadis, Islom tarixi va Arab tili.',
+    curriculumDArts: 'San’at, musiqa va hikoya orqali ijodiy ifoda.',
+
     // Admissions
     admissionsTitle: 'Qabul',
     howToApply: 'Qanday ariza berish',
@@ -286,7 +407,8 @@ const translations = {
     interviewProcessDesc: 'Ota-onalar va o\'quvchi bilan qisqa suhbat (yoshga mos)',
     enrollmentConfirmation: 'Ro\'yxatga olishni tasdiqlash',
     enrollmentConfirmationDesc: 'Qabul xatini oling va ro\'yxatga olish jarayonini yakunlang',
-    
+    reasonForRequest: 'Barcha maydonlar talab qilinadi. Ushbu shaklni yuborish orqali siz so\'rovingiz bo\'yicha Al-Quron Islom maktabi bilan bog\'lanishga rozilik bildirasiz.',
+
     // Contact
     contactTitle: 'Biz bilan aloqa',
     contactDesc: 'Sizdan eshitishni xohlaymiz. Dasturlarimiz haqida ko\'proq ma\'lumot olish yoki tashrif rejalashtirish uchun biz bilan bog\'laning.',
@@ -297,14 +419,24 @@ const translations = {
     schoolHours: 'Maktab soatlari',
     stayInformed: 'Xabardor bo\'ling',
     stayInformedDesc: 'Eng so\'nggi yangiliklar va yangilanishlarni to\'g\'ridan-to\'g\'ri pochta qutingizga olish uchun bizning yangiliklar byulletenimizga obuna bo\'ling.',
-    
+    contactInquiryType: 'So\'rov turini tanlang...',
+
     // Gallery
     galleryDesc: 'O\'quvchilarimiz, sinflarimiz va faoliyatlarimizning suratlari orqali Al-Quran Islom maktabidagi jonli hayotni kashf eting.',
     classroomActivities: 'Sinf faoliyatlari',
     studentLife: 'O\'quvchi hayoti',
     events: 'Tadbirlar',
     all: 'Barchasi',
-    
+
+    // Gallery alts
+    galleryAlt1: "O‘quvchilar sinfda ta’lim olmoqda",
+    galleryAlt2: "Interaktiv o‘quv mashg‘uloti",
+    galleryAlt3: "Baxtli o‘quvchilar",
+    galleryAlt4: "Maktabdagi mashg‘ulotlar",
+    galleryAlt5: "Ta’lim muhiti",
+    galleryAlt6: "O‘quvchilar faolligi",
+    galleryAlt7: "Ta’limiy mashg‘ulotlar",
+
     // News
     newsDesc: 'Al-Quran Islom maktabidan eng so\'nggi yangiliklar, e\'lonlar va tushunchalar bilan yangilanib turing.',
     featured: 'Tanlangan',
@@ -312,7 +444,29 @@ const translations = {
     schoolUpdates: 'Maktab yangiliklari',
     values: 'Qadriyatlar',
     subscribe: 'Obuna bo\'lish',
-    
+
+    // New articles
+    articlesTitle1: 'Yangi STEM dasturi shu kuzda boshlanadi',
+    articlesTitle2: 'Ota-ona va o‘qituvchi uchrashuvi muvaffaqiyatli o‘tdi',
+    articlesTitle3: 'Islomiy meros oyini nishonlash',
+    articlesTitle4: 'O‘qish dasturi ajoyib natijalarni ko‘rsatmoqda',
+    articlesTitle5: 'Xarakter tarbiyasi: Kuchli musulmonlarni tarbiyalash',
+    articlesTitle6: 'O‘quvchilar san’at ko‘rgazmasida ijodkorlikni namoyon etdi',
+
+    articlesExcerpt1: 'Biz o‘quvchilarga fan, texnologiya, muhandislik va matematika bo‘yicha amaliy ta’lim beradigan yangi STEM dasturini joriy qilayotganimizdan xursandmiz.',
+    articlesExcerpt2: 'Yaqinda o‘tkazilgan ota-ona va o‘qituvchi uchrashuvlarida faol ishtirok etildi, o‘quvchilar taraqqiyoti haqida muhim suhbatlar bo‘lib o‘tdi.',
+    articlesExcerpt3: 'O‘quvchilar va oilalar madaniy taqdimotlar, an’anaviy taomlar va ma’rifiy ko‘rgazmalar orqali islomiy merosni nishonladilar.',
+    articlesExcerpt4: 'Fonetik asoslangan o‘qish dasturimiz barcha sinf darajalarida savodxonlik darajasining o‘sishini ko‘rsatmoqda.',
+    articlesExcerpt5: 'Bizning xarakter tarbiyasi yondashuvimiz va islomiy qadriyatlarni kundalik ta’lim jarayoniga qanday qo‘shayotganimiz bilan tanishing.',
+    articlesExcerpt6: 'Yosh rassomlarimiz yillik san’at ko‘rgazmasida o‘z ijodiy ishlarini namoyish qilib, ta’limda ijodkorlikning ahamiyatini ko‘rsatdilar.',
+
+    articleDate1: '2024-yil 10-mart',
+    articleDate2: '2024-yil 5-mart',
+    articleDate3: '2024-yil 28-fevral',
+    articleDate4: '2024-yil 20-fevral',
+    articleDate5: '2024-yil 15-fevral',
+    articleDate6: '2024-yil 10-fevral',
+
     // Parent Resources
     parentResourcesDesc: 'Ota-onalar farzandlarining ta\'lim sayohatida xabardor bo\'lish va ishtirok etish uchun kerak bo\'lgan hamma narsa.',
     schoolCalendar: 'Maktab taqvimi',
@@ -335,7 +489,24 @@ const translations = {
     upcomingEventsDesc: 'Ushbu muhim maktab tadbirlari uchun taqvimingizni belgilang',
     stayConnected: 'Bog\'langan bo\'ling',
     stayConnectedDesc: 'Maktab faoliyatlari va muhim e\'lonlar haqida muntazam yangilanishlar uchun bizning yangiliklar byulletenimizga obuna bo\'ling.',
-    
+
+    // Parent procedures Description
+    dropoffProceduresDesc: 'O‘quvchilarni ertalab soat 7:45 dan boshlab maktabga olib kelish mumkin. Iltimos, faqat belgilangan tushirish hududidan foydalaning va avtomobilingizdan tushmang. Xodimlar bolalarni mashinadan tushirishda yordam berishadi.',
+    pickupProceduresDesc: 'O‘quvchilarning muntazam chiqish vaqti soat 15:30 da boshlanadi. Iltimos, o‘z vaqtida keling va olib ketish belgisi ni ko‘rsatib turing. Kech olib ketish holatlarida qo‘shimcha g\'amxo\'rlik uchun to‘lovi olinishi mumkin.',
+
+    // Upcoming events
+    upcomingEventDate1: 'Mart 15',
+    upcomingEventDate2: 'Mart 22',
+    upcomingEventDate3: 'Aprel 5',
+    upcomingEventDate4: 'Aprel 12',
+    upcomingEventDate5: 'May 3',
+
+    upcomingEventName1: 'Ota-onalar va o‘qituvchilar uchrashuvi',
+    upcomingEventName2: 'Islomiy meros kuni',
+    upcomingEventName3: 'Ilmiy ko‘rgazma',
+    upcomingEventName4: 'Bahorgi ta’til boshlanishi',
+    upcomingEventName5: 'Qur’on tilovati bo‘yicha musobaqa',
+
     // Form fields
     studentFirstName: 'O\'quvchining ismi',
     studentLastName: 'O\'quvchining familiyasi',
@@ -363,7 +534,7 @@ const translations = {
     subject: 'Mavzu',
     message: 'Xabar',
     sendMessage: 'Xabar yuborish',
-    
+
     // Common
     learnMore: 'Batafsil',
     readMore: 'Davomini o\'qish',
@@ -372,6 +543,9 @@ const translations = {
     email: 'Elektron pochta',
     address: 'Manzil',
     enterYourEmail: 'Elektron pochtangizni kiriting',
+    submissionSuccess: 'Ariza muvaffaqiyatli yuborildi!',
+    submissionSuccessDesc: 'Arizangiz uchun rahmat. Keyingi qadamlarni muhokama qilish uchun tez orada siz bilan bog\'lanamiz.',
+    backToContact: 'Yana bir ariza yuborish',
   },
   ru: {
     // Navigation
@@ -383,7 +557,7 @@ const translations = {
     gallery: 'Галерея',
     news: 'Новости и блог',
     contact: 'Контакты',
-    
+
     // Home page
     welcome: 'Добро пожаловать в исламскую школу Аль-Коран',
     welcomeSubtitle: 'Превосходство в исламском образовании для детей от дошкольного до 3-го класса',
@@ -404,7 +578,7 @@ const translations = {
     ourSchoolLifeDesc: 'Испытайте радость обучения в нашей заботливой среде',
     readyToJoin: 'Готовы присоединиться к нашей школьной семье?',
     readyToJoinDesc: 'Свяжитесь с нами сегодня, чтобы запланировать экскурсию и узнать больше о наших программах.',
-    
+
     // About Us
     aboutTitle: 'Об исламской школе Аль-Коран',
     mission: 'Наша миссия',
@@ -426,7 +600,11 @@ const translations = {
     yearsOfService: 'Лет служения',
     studentsServed: 'Обслуженных студентов',
     dedicatedStaff: 'Преданных сотрудников',
-    
+    schoolDescription: 'Al-Quran Islamic School — частное исламское учебное заведение в Огайо, США, предлагающее благоприятную и ориентированную на веру среду обучения для детей от дошкольного возраста до 3-го класса. Наша миссия — предоставлять высококачественное академическое обучение, интегрированное с исламскими учениями, помогая детям расти интеллектуально, духовно и нравственно.',
+    ourHistoryText1: 'Al-Quran Islamic School была основана с целью предоставить исключительное исламское образование мусульманской общине в Огайо. Наши основатели осознали необходимость школы, которая бы органично интегрировала исламские ценности с академическим превосходством.',
+    ourHistoryText2: 'С момента нашего основания мы выросли из небольшой общественной инициативы в уважаемое образовательное учреждение, обслуживающее семьи по всему региону. Наша преданная команда педагогов разделяет общую приверженность воспитанию следующего поколения мусульманских лидеров.',
+    ourHistoryText3: 'Сегодня мы продолжаем придерживаться наших основополагающих принципов, при этом приспосабливаясь к меняющимся потребностям наших студентов и сообщества. Мы гордимся тем, что являемся нечартерной школой, которая поддерживает высокие стандарты академического и исламского образования.',
+
     // Programs
     programsTitle: 'Наши программы',
     kindergarten: 'Программа детского сада',
@@ -449,7 +627,37 @@ const translations = {
     integratedLearningDesc: 'Исламские ценности, вплетенные во все предметы',
     structuredEnvironment: 'Структурированная среда',
     structuredEnvironmentDesc: 'Последовательные распорядки, способствующие обучению и росту',
-    
+
+    // Programs Features
+    preKDescription: 'Образование через игру и основы исламского воспитания',
+    preKF1: 'Основы арабского алфавита',
+    preKF2: 'Чтение Корана',
+    preKF3: 'Социальные навыки',
+    preKF4: 'Моторное развитие',
+
+    kindergartenDescription: 'Всесторонняя подготовка к начальному образованию с исламскими ценностями',
+    kindergartenF1: 'Подготовка к чтению',
+    kindergartenF2: 'Основы математики',
+    kindergartenF3: 'Исламские истории',
+    kindergartenF4: 'Творческое искусство',
+
+    elementaryDescription: 'Полный учебный план, интегрированный с исламскими науками',
+    elementaryF1: 'Основные предметы',
+    elementaryF2: 'Заучивание Корана',
+    elementaryF3: 'Арабский язык',
+    elementaryF4: 'Изучение науки',
+
+    madrasaDescription: 'Интенсивное исламское образование с упором на Коран и религиозные науки',
+    madrasaF1: 'Заучивание Корана',
+    madrasaF2: 'Исламская юриспруденция',
+    madrasaF3: 'Арабская грамматика',
+    madrasaF4: 'Изучение хадисов',
+
+    curriculumDReading: 'Всеобъемлющая программа по грамотности с подходом, основанным на фонетике.',
+    curriculumDStem: 'Обучение математике и естественным наукам с практическими экспериментами.',
+    curriculumDIslamicStudies: 'Коран, Хадисы, история ислама и арабский язык.',
+    curriculumDArts: 'Творческое самовыражение через искусство, музыку и рассказы.',
+
     // Admissions
     admissionsTitle: 'Поступление',
     howToApply: 'Как подать заявление',
@@ -467,7 +675,8 @@ const translations = {
     interviewProcessDesc: 'Краткое собеседование с родителями и учеником (соответствующее возрасту)',
     enrollmentConfirmation: 'Подтверждение зачисления',
     enrollmentConfirmationDesc: 'Получите письмо о зачислении и завершите процесс регистрации',
-    
+    reasonForRequest: 'Все поля обязательны для заполнения. Отправляя эту форму, вы соглашаетесь, чтобы с вами связались представители Исламской школы Аль-Коран по поводу вашего запроса.',
+
     // Contact
     contactTitle: 'Свяжитесь с нами',
     contactDesc: 'Мы хотели бы услышать от вас. Свяжитесь с нами, чтобы узнать больше о наших программах или запланировать визит.',
@@ -478,14 +687,24 @@ const translations = {
     schoolHours: 'Школьные часы',
     stayInformed: 'Оставайтесь в курсе',
     stayInformedDesc: 'Подпишитесь на нашу рассылку, чтобы получать последние новости и обновления прямо в свой почтовый ящик.',
-    
+
     // Gallery
     galleryDesc: 'Откройте для себя яркую жизнь исламской школы Аль-Коран через фотографии наших учеников, классных комнат и мероприятий.',
     classroomActivities: 'Классные мероприятия',
     studentLife: 'Студенческая жизнь',
     events: 'События',
     all: 'Все',
-    
+
+    // Gallery alts
+    galleryAlt1: "Ученики учатся в классе",
+    galleryAlt2: "Интерактивное учебное занятие",
+    galleryAlt3: "Счастливые ученики",
+    galleryAlt4: "Школьные мероприятия",
+    galleryAlt5: "Учебная среда",
+    galleryAlt6: "Активность учеников",
+    galleryAlt7: "Образовательные мероприятия",
+
+
     // News
     newsDesc: 'Будьте в курсе последних новостей, объявлений и идей исламской школы Аль-Коран.',
     featured: 'Рекомендуемые',
@@ -493,7 +712,29 @@ const translations = {
     schoolUpdates: 'Школьные обновления',
     values: 'Ценности',
     subscribe: 'Подписаться',
-    
+
+    // New articles
+    articlesTitle1: 'Новая STEM-программа стартует этой осенью',
+    articlesTitle2: 'Успешное проведение родительско-учительской встречи',
+    articlesTitle3: 'Празднование месяца исламского наследия',
+    articlesTitle4: 'Программа чтения демонстрирует отличные результаты',
+    articlesTitle5: 'Воспитание характера: Формирование сильных мусульман',
+    articlesTitle6: 'Выставка ученических работ демонстрирует творчество',
+
+    articlesExcerpt1: 'Мы рады представить нашу усовершенствованную STEM-программу, которая даст ученикам практический опыт в науке, технологиях, инженерии и математике.',
+    articlesExcerpt2: 'На недавних встречах родителей и учителей было отличное присутствие, обсуждались успехи учеников и совместное планирование дальнейшего развития.',
+    articlesExcerpt3: 'Ученики и их семьи объединились, чтобы отметить исламское наследие с помощью культурных презентаций, традиционной кухни и обучающих экспозиций.',
+    articlesExcerpt4: 'Наша программа чтения на основе фонетики продолжает показывать заметные улучшения уровня грамотности среди учеников всех классов.',
+    articlesExcerpt5: 'Узнайте о нашем подходе к воспитанию характера и о том, как мы интегрируем исламские ценности в повседневное обучение.',
+    articlesExcerpt6: 'Наши юные художники представили свои творческие работы на ежегодной выставке, подчеркнув важность самовыражения в образовании.',
+
+    articleDate1: '10 марта 2024 г.',
+    articleDate2: '5 марта 2024 г.',
+    articleDate3: '28 февраля 2024 г.',
+    articleDate4: '20 февраля 2024 г.',
+    articleDate5: '15 февраля 2024 г.',
+    articleDate6: '10 февраля 2024 г.',
+
     // Parent Resources
     parentResourcesDesc: 'Все, что нужно родителям, чтобы оставаться информированными и участвовать в образовательном путешествии своего ребенка.',
     schoolCalendar: 'Школьный календарь',
@@ -516,7 +757,24 @@ const translations = {
     upcomingEventsDesc: 'Отметьте в своих календарях эти важные школьные мероприятия',
     stayConnected: 'Оставайтесь на связи',
     stayConnectedDesc: 'Подпишитесь на нашу рассылку для регулярных обновлений о школьных мероприятиях и важных объявлениях.',
-    
+
+    // Parent procedures Description
+    dropoffProceduresDesc: 'Ученики могут прибывать в школу начиная с 7:45 утра. Пожалуйста, используйте специально отведённую зону высадки и оставайтесь в автомобиле. Персонал поможет детям выйти из машины.',
+    pickupProceduresDesc: 'Обычное время окончания занятий — 15:30. Пожалуйста, приходите вовремя и показывайте ваш бейдж для получения ребёнка. В случае опоздания может взиматься дополнительная плата за присмотр.',
+
+    // Upcoming events
+    upcomingEventDate1: 'Марта 15',
+    upcomingEventDate2: 'Марта 2',
+    upcomingEventDate3: 'Апреля 5',
+    upcomingEventDate4: 'Апреля 12',
+    upcomingEventDate5: 'Мая 3',
+
+    upcomingEventName1: 'Родительско-учительская конференция',
+    upcomingEventName2: 'День исламского наследия',
+    upcomingEventName3: 'Научная ярмарка',
+    upcomingEventName4: 'Начало весенних каникул',
+    upcomingEventName5: 'Конкурс чтения Корана',
+
     // Form fields
     studentFirstName: 'Имя ученика',
     studentLastName: 'Фамилия ученика',
@@ -544,7 +802,9 @@ const translations = {
     subject: 'Тема',
     message: 'Сообщение',
     sendMessage: 'Отправить сообщение',
-    
+    contactInquiryType: 'Выберите тип запроса...',
+
+
     // Common
     learnMore: 'Узнать больше',
     readMore: 'Читать далее',
@@ -553,6 +813,9 @@ const translations = {
     email: 'Электронная почта',
     address: 'Адрес',
     enterYourEmail: 'Введите ваш email',
+    submissionSuccess: 'Заявление успешно отправлено!',
+    submissionSuccessDesc: 'Спасибо за ваше заявление. Мы свяжемся с вами в ближайшее время, чтобы обсудить следующие шаги.',
+    backToContact: 'Отправить еще одно заявление',
   }
 };
 
@@ -577,3 +840,8 @@ export const useLanguage = (): LanguageContextType => {
   }
   return context;
 };
+
+export function languageChooser(enText: string, uzText: string, ruText: string): string {
+  const { language } = useLanguage();
+  return language === 'en' ? enText : language === 'uz' ? uzText : ruText;
+}

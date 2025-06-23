@@ -7,18 +7,17 @@ interface ContactFormData {
   email: string;
   phone: string;
   inquiryType: string;
-  subject: string;
   message: string;
 }
 
 const Contact: React.FC = () => {
   const { t } = useLanguage();
+  // const currentLanguage = useLanguage().language;
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: '',
     email: '',
     phone: '',
     inquiryType: '',
-    subject: '',
     message: ''
   });
   
@@ -60,10 +59,6 @@ const Contact: React.FC = () => {
     const requiredFields: (keyof ContactFormData)[] = [
       'fullName',
       'email',
-      'phone',
-      'inquiryType',
-      'subject',
-      'message'
     ];
 
     for (const field of requiredFields) {
@@ -122,7 +117,6 @@ const Contact: React.FC = () => {
         email: '',
         phone: '',
         inquiryType: '',
-        subject: '',
         message: ''
       });
     } catch (error) {
@@ -145,16 +139,16 @@ const Contact: React.FC = () => {
             </div>
           </div>
           <h3 className="text-lg font-semibold text-green-800 mb-2">
-            Application Submitted Successfully!
+            {t('submissionSuccess')}
           </h3>
           <p className="text-green-700 mb-6">
-            Thank you for your application. We will contact you soon to discuss the next steps.
+            {t('submissionSuccessDesc')}
           </p>
           <button
             onClick={() => setSubmitted(false)}
             className="text-green-600 hover:text-green-700 font-medium"
           >
-            Submit Another Application
+            {t('backToContact')}
           </button>
         </div>
       </div>
@@ -256,12 +250,11 @@ const Contact: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t('phone')} <span className="text-red-500">*</span>
+                    {t('phone')}
                   </label>
                   <input
                     type="tel"
                     name="phone"
-                    required
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
@@ -270,16 +263,15 @@ const Contact: React.FC = () => {
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t('inquiryType')} <span className="text-red-500">*</span>
+                    {t('inquiryType')}
                   </label>
                   <select
                     name="inquiryType"
-                    required
                     value={formData.inquiryType}
                     onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   >
-                    <option value="">Select inquiry type...</option>
+                    <option value="">{t('contactInquiryType')}</option>
                     <option value="general">{t('generalInquiry')}</option>
                     <option value="tour">{t('scheduleTour')}</option>
                     <option value="enrollment">{t('enrollmentInformation')}</option>
@@ -290,25 +282,10 @@ const Contact: React.FC = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {t('subject')} <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  required
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {t('message')} <span className="text-red-500">*</span>
+                  {t('message')}
                 </label>
                 <textarea
                   name="message"
-                  required
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
@@ -318,7 +295,7 @@ const Contact: React.FC = () => {
 
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600">
-                  <span className="text-red-500">*</span> All fields are required. By submitting this form, you agree to be contacted by Al-Quran Islamic School regarding your inquiry.
+                  <span className="text-red-500">*</span> {t('reasonForRequest')}
                 </p>
               </div>
 
