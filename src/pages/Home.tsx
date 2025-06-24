@@ -51,40 +51,39 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[55vh] overflow">
+      <section className="relative min-h-[70vh] overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('/images/image.png')",
-            backgroundPosition: 'center 60%'
-          }}
+          className="w-full h-[500px] bg-[linear-gradient(to_left,white_40%,rgba(255,255,255,0)_60%),url('/images/image.png')] bg-cover bg-center bg-no-repeat"
         />
 
-        <div className="absolute inset-0 backdrop-blur-md bg-white/10" />
+        <div className="absolute inset-0 bg-white/10" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            {t('welcome')}
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-800 mb-8 max-w-4xl mx-auto">
-            {t('welcomeSubtitle')}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/contact"
-              className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 transition-colors duration-200"
-            >
-              {t('scheduleTour')}
-            </Link>
-            <Link
-              to="/admissions"
-              className="inline-flex items-center px-8 py-3 border border-emerald-600 text-base font-medium rounded-md text-emerald-600 bg-white hover:bg-emerald-50 transition-colors duration-200"
-            >
-              {t('enrollNow')}
-            </Link>
+        <div className="absolute inset-0 z-10 max-w-7x px-4 sm:px-6 lg:px-8 flex items-center justify-end">
+          <div className="text-center justify-center max-w-2xl py-20">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              {t('welcome')}
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-800 mb-8">
+              {t('welcomeSubtitle')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/contact"
+                className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 transition-colors duration-200"
+              >
+                {t('scheduleTour')}
+              </Link>
+              <Link
+                to="/admissions"
+                className="inline-flex items-center px-8 py-3 border border-emerald-600 text-base font-medium rounded-md text-emerald-600 bg-white hover:bg-emerald-50 transition-colors duration-200"
+              >
+                {t('enrollNow')}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* Quick Facts */}
       <section className="py-16 bg-white">

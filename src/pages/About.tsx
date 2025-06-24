@@ -32,15 +32,8 @@ const About: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-[55vh] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('/images/image.png')",
-            backgroundPosition: 'center 60%'
-          }}
-        />
-        <div className="absolute inset-0 backdrop-blur-md bg-white/10" />
+      <section className="relative max-h-[40vh] from-emerald-50 to-blue-50 bg-gradient-to-tr overflow-hidden">
+        <div className="absolute inset-0 bg-white/10" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 inline-block px-6 py-3 ">
