@@ -53,7 +53,7 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section className="relative min-h-[70vh] overflow-hidden">
         <div
-          className="w-full h-[500px] bg-[linear-gradient(to_left,white_40%,rgba(255,255,255,0)_60%),url('/images/image.png')] bg-cover bg-center bg-no-repeat"
+          className="w-full h-[500px] bg-[linear-gradient(to_left,white_15%,rgba(255,255,255,0)_60%),url('/images/image.png')] bg-cover bg-center bg-no-repeat"
         />
 
         <div className="absolute inset-0 bg-white/10" />
