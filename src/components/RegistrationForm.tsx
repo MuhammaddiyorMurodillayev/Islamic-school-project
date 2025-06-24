@@ -90,6 +90,7 @@ const RegistrationForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSubmit, setShowSubmit] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [isNotFilled, setIsNotFilled] = useState(false);
   const [remindRequiredConset, setRemindRequiredConset] = useState(false);
   const [showRequiredSign, setShowRequiredSign] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -126,12 +127,16 @@ const RegistrationForm: React.FC = () => {
       'medicalDrugAllergy',
       'medicalFoodAllergy',
       'medicalEnvAllergy',
+      'chronicConditions',
+      'medicalConsent',
+      'acceptforAccidentallyTreatment',
     ];
 
     for (const field of requiredFields) {
       const value = formData[field as keyof FormData];
       if (!((typeof value === 'string' ? value : '')).trim()) {
         setError(`Please fill in all required fields marked with *`);
+        setIsNotFilled(true);
         return false;
       }
     }
@@ -207,8 +212,25 @@ const RegistrationForm: React.FC = () => {
         parentSignature: '',
         parentSignDate: '',
         acceptforAccidentallyTreatment: '',
-
       });
+
+      setShowModal(false);
+      setShowSubmit(false);
+      setRemindRequiredConset(false);
+      setShowRequiredSign(false);
+      setError(null);
+      if (signatureCanvasRef.current) {
+        signatureCanvasRef.current.clear();
+      }
+      setIsNotFilled(false);
+
+      const submittedElement = await document.getElementById('registrationFormSubmitted');
+      console.log('submittedElement:', submittedElement);
+      if (submittedElement) {
+        const distanceToTop = submittedElement.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: distanceToTop-100, behavior: 'smooth' });
+      }
+
     } catch (error) {
       console.error('Form submission error:', error);
       setError(t('errorSubmitting'));
@@ -219,7 +241,9 @@ const RegistrationForm: React.FC = () => {
 
   if (submitted) {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
+      <div
+        className="bg-green-50 border border-green-200 rounded-lg p-6 text-center"
+      >
         <div className="flex justify-center mb-4">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
             <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -233,14 +257,23 @@ const RegistrationForm: React.FC = () => {
         <p className="text-green-700 mb-4">
           {t('submitDiscus')}
         </p>
+
         <button
-          onClick={() => setSubmitted(false)}
+          onClick={() => {
+            setSubmitted(false)
+            setIsNotFilled(false);
+            setShowSubmit(false);
+            setShowModal(false);
+            setRemindRequiredConset(false);
+            setShowRequiredSign(false);
+          }}
           className="text-green-600 hover:text-green-700 font-medium"
         >
           {t('submitAnotherApp')}
         </button>
       </div>
     );
+
   }
 
   return (
@@ -273,7 +306,11 @@ const RegistrationForm: React.FC = () => {
               required
               value={formData.studentFirstName}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              className={
+                isNotFilled && formData.studentFirstName.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              }
             />
           </div>
 
@@ -288,8 +325,11 @@ const RegistrationForm: React.FC = () => {
               required
               value={formData.studentLastName}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            />
+              className={
+                isNotFilled && formData.studentLastName.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
 
           {/* Date of Birth */}
@@ -303,8 +343,11 @@ const RegistrationForm: React.FC = () => {
               required
               value={formData.dateOfBirth}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            />
+              className={
+                isNotFilled && formData.dateOfBirth.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
 
           {/* Nationality */}
@@ -318,8 +361,11 @@ const RegistrationForm: React.FC = () => {
               required
               value={formData.nationality}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            />
+              className={
+                isNotFilled && formData.nationality.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
         </div>
 
@@ -334,8 +380,10 @@ const RegistrationForm: React.FC = () => {
             required
             value={formData.residencyAddress}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-          />
+            className={isNotFilled && formData.residencyAddress.trim() === '' ?
+              'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500' :
+              'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+            } />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -349,7 +397,11 @@ const RegistrationForm: React.FC = () => {
               required
               value={formData.speaksEnglish}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              className={
+                isNotFilled && formData.speaksEnglish.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md shadow focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              }
             >
               <option value="">{t('select')}</option>
               <option value="yes">{t('yes')}</option>
@@ -368,8 +420,11 @@ const RegistrationForm: React.FC = () => {
               required
               value={formData.languageAtHome}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            />
+              className={
+                isNotFilled && formData.languageAtHome.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
         </div>
 
@@ -384,8 +439,11 @@ const RegistrationForm: React.FC = () => {
               name="motherName"
               value={formData.motherName}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            />
+              className={
+                isNotFilled && formData.motherName.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
 
           {/* Father's Name */}
@@ -398,8 +456,11 @@ const RegistrationForm: React.FC = () => {
               name="fatherName"
               value={formData.fatherName}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            />
+              className={
+                isNotFilled && formData.fatherName.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
         </div>
 
@@ -415,8 +476,11 @@ const RegistrationForm: React.FC = () => {
               required
               value={formData.motherPhone}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            />
+              className={
+                isNotFilled && formData.motherPhone.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
 
           {/* Father's Phone */}
@@ -429,8 +493,11 @@ const RegistrationForm: React.FC = () => {
               name="fatherPhone"
               value={formData.fatherPhone}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            />
+              className={
+                isNotFilled && formData.fatherPhone.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
         </div>
 
@@ -444,8 +511,11 @@ const RegistrationForm: React.FC = () => {
             name="parentEmail"
             value={formData.parentEmail}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-          />
+            className={
+              isNotFilled && formData.parentEmail.trim() === ''
+                ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+            } />
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 
@@ -459,8 +529,11 @@ const RegistrationForm: React.FC = () => {
               name="emergencyContact"
               value={formData.emergencyContact}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            />
+              className={
+                isNotFilled && formData.emergencyContact.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
 
           {/* Emergency Phone */}
@@ -473,8 +546,11 @@ const RegistrationForm: React.FC = () => {
               name="emergencyPhone"
               value={formData.emergencyPhone}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-            />
+              className={
+                isNotFilled && formData.emergencyPhone.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
         </div>
 
@@ -486,57 +562,103 @@ const RegistrationForm: React.FC = () => {
           <h3 className="text-xl font-semibold text-gray-800 mb-4">{t('medicalHistory')}</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('medicalTaking')}</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {t('medicalTaking')}<span className="text-red-500">*</span></label>
               <input type="text" name="medicalMedication" value={formData.medicalMedication} onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+                className={
+                  isNotFilled && formData.medicalMedication.trim() === ''
+                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+                }
+              />
             </div>
+
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('allergy')}</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('allergy')}<span className="text-red-500">*</span></label>
               <input type="text" name="medicalDrugAllergy" value={formData.medicalDrugAllergy} onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+                className={
+                  isNotFilled && formData.medicalDrugAllergy.trim() === ''
+                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+                } />
             </div>
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('foodAllergy')}</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('foodAllergy')}<span className="text-red-500">*</span></label>
               <input type="text" name="medicalFoodAllergy" value={formData.medicalFoodAllergy} onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+                className={
+                  isNotFilled && formData.medicalFoodAllergy.trim() === ''
+                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+                } />
             </div>
+
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('enviromentalAllergy')}</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('enviromentalAllergy')}<span className="text-red-500">*</span></label>
               <input type="text" name="medicalEnvAllergy" value={formData.medicalEnvAllergy} onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+                className={
+                  isNotFilled && formData.medicalEnvAllergy.trim() === ''
+                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+                } />
             </div>
+
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('chronicConditions')}</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('chronicConditions')}<span className="text-red-500">*</span></label>
               <input type="text" name="chronicConditions" value={formData.chronicConditions} onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+                className={
+                  isNotFilled && formData.chronicConditions.trim() === ''
+                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+                } />
             </div>
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('headInjury')}</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('headInjury')}<span className="text-red-500">*</span></label>
               <select name="headInjury" value={formData.headInjury} onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md">
+                className={
+                  isNotFilled && formData.headInjury.trim() === ''
+                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+                }                >
                 <option value="">{t('select')}</option>
                 <option value="yes">{t('yes')}</option>
                 <option value="no">{t('no')}</option>
               </select>
             </div>
+
+
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('diagnosesByDoctor')}</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('diagnosesByDoctor')}<span className="text-red-500">*</span></label>
               <input type="text" name="medicalDiagnosis" value={formData.medicalDiagnosis} onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+                className={
+                  isNotFilled && formData.medicalDiagnosis.trim() === ''
+                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+                } />
             </div>
+
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 {t('medicalConsent')} <span className="text-red-500">*</span>
               </label>
               <input type="text" name="medicalConsent" placeholder="Parent/Guardian initials" value={formData.medicalConsent} onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+                className={
+                  isNotFilled && formData.medicalConsent.trim() === ''
+                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+                } />
             </div>
           </div>
         </div>
 
         {!showSubmit &&
-          <div className={remindRequiredConset ? "bg-red-50 p-4 border border-red-200 rounded-lg cursor-pointer hover:bg-red-100 transition-colors duration-200" : "bg-gray-50 p-4 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors duration-200"}
+          <div className={remindRequiredConset ? "bg-red-50 p-4 border shadow border-red-300 rounded-lg cursor-pointer hover:bg-red-100 transition-colors duration-200" : "bg-gray-50 p-4 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors duration-200"}
             onClick={() => setShowModal(true)}
           >
             <p className="text-sm text-red-700">
@@ -551,8 +673,48 @@ const RegistrationForm: React.FC = () => {
         }
 
         {showModal &&
-          <div className="fixed -inset-6 z-50 flex items-center justify-center bg-black/30 backdrop-blur-lg overflow-y-auto">
+          <div
+            className="fixed -inset-6 z-50 flex items-center justify-center bg-black/30 backdrop-blur-lg overflow-y-auto"
+            tabIndex={-1}
+            ref={el => {
+              if (el && showModal) {
+                el.focus();
+              }
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                setShowModal(false);
+                setRemindRequiredConset(false);
+                setShowRequiredSign(false);
+              }
+            }}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                setShowModal(false);
+                setRemindRequiredConset(false);
+                setShowRequiredSign(false);
+              }
+            }}
+          >
             <div className="bg-white rounded-lg shadow-xl p-8 w-full max-w-3xl relative mx-4 my-12 mt-40">
+              <div>
+                <button>
+                  <svg
+                    onClick={() => {
+                      setShowModal(false);
+                      setRemindRequiredConset(false);
+                      setShowRequiredSign(false);
+                    }}
+                    className="absolute top-4 right-4 w-6 h-6 text-gray-500 hover:text-gray-700 transition-colors duration-200 cursor-pointer"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
               <div className="space-y-6">
 
                 {/* Alert box */}
@@ -647,9 +809,8 @@ const RegistrationForm: React.FC = () => {
               </div>
             </div>
           </div>
-
-
         }
+
 
 
         {
@@ -674,6 +835,7 @@ const RegistrationForm: React.FC = () => {
             if (!signatureCanvasRef.current ||
               signatureCanvasRef.current.isEmpty()) {
               setRemindRequiredConset(true);
+              validateForm();
             }
           }}
           className={
