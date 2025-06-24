@@ -143,7 +143,7 @@ const ParentResources: React.FC = () => {
                       {resource.action}
                     </Link>
                   ) : (
-                    <button className="text-emerald-600 hover:text-emerald-700 font-medium text-sm transition-colors duration-200">
+                    <button onClick={resource.onClick} className="text-emerald-600 hover:text-emerald-700 font-medium text-sm transition-colors duration-200">
                       {resource.action}
                     </button>
                   )}
