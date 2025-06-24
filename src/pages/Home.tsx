@@ -11,17 +11,17 @@ const Home: React.FC = () => {
     {
       icon: <GraduationCap className="h-8 w-8 text-emerald-600" />,
       title: t('preK3rd'),
-      description: (currentLanguage === 'en'? 'Ages 3-9' : currentLanguage === 'uz'? '3-9 yosh' : 'Возраст 3-9 лет')
+      description: (currentLanguage === 'en' ? 'Ages 3-9' : currentLanguage === 'uz' ? '3-9 yosh' : 'Возраст 3-9 лет')
     },
     {
       icon: <MapPin className="h-8 w-8 text-emerald-600" />,
       title: t('ohioLocation'),
-      description: (currentLanguage === 'en'? '3 Convenient Locations' : currentLanguage === 'uz'? '3 ta qulay joylar' : '3 удобных места')
+      description: (currentLanguage === 'en' ? '3 Convenient Locations' : currentLanguage === 'uz' ? '3 ta qulay joylar' : '3 удобных места')
     },
     {
       icon: <Users className="h-8 w-8 text-emerald-600" />,
       title: t('smallClasses'),
-      description: (currentLanguage === 'en'? '12-15 Students Per Class' : currentLanguage === 'uz'? 'Har bir sinfda 12-15 nafar talaba' : '12-15 учеников в классе')
+      description: (currentLanguage === 'en' ? '12-15 Students Per Class' : currentLanguage === 'uz' ? 'Har bir sinfda 12-15 nafar talaba' : '12-15 учеников в классе')
     },
     {
       icon: <Clock className="h-8 w-8 text-emerald-600" />,
@@ -51,29 +51,37 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-emerald-50 to-blue-50 py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              {t('welcome')}
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto">
-              {t('welcomeSubtitle')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 transition-colors duration-200"
-              >
-                {t('scheduleTour')}
-              </Link>
-              <Link
-                to="/admissions"
-                className="inline-flex items-center px-8 py-3 border border-emerald-600 text-base font-medium rounded-md text-emerald-600 bg-white hover:bg-emerald-50 transition-colors duration-200"
-              >
-                {t('enrollNow')}
-              </Link>
-            </div>
+      <section className="relative min-h-[55vh] overflow">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/images/image.png')",
+            backgroundPosition: 'center 60%'
+          }}
+        />
+
+        <div className="absolute inset-0 backdrop-blur-md bg-white/10" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            {t('welcome')}
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-800 mb-8 max-w-4xl mx-auto">
+            {t('welcomeSubtitle')}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/contact"
+              className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 transition-colors duration-200"
+            >
+              {t('scheduleTour')}
+            </Link>
+            <Link
+              to="/admissions"
+              className="inline-flex items-center px-8 py-3 border border-emerald-600 text-base font-medium rounded-md text-emerald-600 bg-white hover:bg-emerald-50 transition-colors duration-200"
+            >
+              {t('enrollNow')}
+            </Link>
           </div>
         </div>
       </section>

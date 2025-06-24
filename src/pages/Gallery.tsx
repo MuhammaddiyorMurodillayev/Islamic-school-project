@@ -44,28 +44,43 @@ const Gallery: React.FC = () => {
     }
   ];
 
-  const categories = [t('all'), t('classroomActivities'), t('studentLife'), t('events')];
-  const [activeCategory, setActiveCategory] = useState(t('all'));
+  const keys = ['all', 'classroomActivities', 'studentLife', 'events'];
+  const categories = keys.map(key => ({
+    key: key,
+    label: t(key)
+  }));
 
-  const filteredImages = activeCategory === t('all') 
-    ? images 
-    : images.filter(image => image.category === activeCategory);
+  console.log(categories);
+
+  const [activeCategory, setActiveCategory] = useState(categories[0]);
+
+  const filteredImages = activeCategory.key === 'all'
+    ? images
+    : images.filter(image => image.category === activeCategory.label);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-emerald-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              {t('gallery')}
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t('galleryDesc')}
-            </p>
-          </div>
+      <section className="relative min-h-[55vh] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/images/image.png')",
+            backgroundPosition: 'center 60%'
+          }}
+        />
+
+        <div className="absolute inset-0 backdrop-blur-md bg-white/10" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            {t('gallery')}
+          </h1>
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+            {t('galleryDesc')}
+          </p>
         </div>
       </section>
+
 
       {/* Category Filter */}
       <section className="py-8 bg-white border-b">
@@ -73,15 +88,14 @@ const Gallery: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
               <button
-                key={category}
+                key={category.key}
                 onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                  activeCategory === category
-                    ? 'bg-emerald-600 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-600'
-                }`}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${activeCategory.key === category.key
+                  ? 'bg-emerald-600 text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-600'
+                  }`}
               >
-                {category}
+                {category.label}
               </button>
             ))}
           </div>
@@ -122,9 +136,9 @@ const Gallery: React.FC = () => {
           <div className="relative max-w-4xl max-h-full">
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+              className="absolute -top-15 right-0 text-white justify-center items-center hover:text-gray-300 transition-colors"
             >
-              <X className="h-8 w-8" />
+              <X className="h-8 w-8 " />
             </button>
             <img
               src={selectedImage}

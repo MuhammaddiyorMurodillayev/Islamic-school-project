@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import SignatureCanvas from 'react-signature-canvas';
 
 interface FormData {
   studentFirstName: string;
@@ -16,6 +17,17 @@ interface FormData {
   parentEmail: string;
   emergencyContact: string;
   emergencyPhone: string;
+  medicalMedication: string;
+  medicalDrugAllergy: string;
+  medicalFoodAllergy: string;
+  medicalEnvAllergy: string;
+  chronicConditions: string;
+  headInjury: string;
+  medicalDiagnosis: string;
+  medicalConsent: string;
+  parentSignature: string;
+  parentSignDate: string;
+  acceptforAccidentallyTreatment: string;
 }
 
 const RegistrationForm: React.FC = () => {
@@ -35,9 +47,51 @@ const RegistrationForm: React.FC = () => {
     parentEmail: '',
     emergencyContact: '',
     emergencyPhone: '',
+    medicalMedication: '',
+    medicalDrugAllergy: '',
+    medicalFoodAllergy: '',
+    medicalEnvAllergy: '',
+    chronicConditions: '',
+    headInjury: '',
+    medicalDiagnosis: '',
+    medicalConsent: '',
+    parentSignature: '',
+    parentSignDate: '',
+    acceptforAccidentallyTreatment: '',
   });
-  
+
+
+  const signatureCanvasRef = React.createRef<SignatureCanvas>();
+
+  const clearSignature = () => {
+    if (signatureCanvasRef.current) {
+      signatureCanvasRef.current.clear();
+    }
+  }
+
+  const saveSignature = () => {
+    if (signatureCanvasRef.current) {
+      const signatureDataUrl = signatureCanvasRef.current.toDataURL('image/png');
+
+      setFormData(prev => ({
+        ...prev,
+        parentSignature: signatureDataUrl
+      }));
+
+      setShowRequiredSign(false);
+
+      setFormData(prev => ({
+        ...prev,
+        parentSignature: signatureDataUrl || ''
+      }));
+    }
+  }
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSubmit, setShowSubmit] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [remindRequiredConset, setRemindRequiredConset] = useState(false);
+  const [showRequiredSign, setShowRequiredSign] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -56,17 +110,27 @@ const RegistrationForm: React.FC = () => {
   const validateForm = (): boolean => {
     const requiredFields = [
       'studentFirstName',
-      'studentLastName', 
+      'studentLastName',
       'dateOfBirth',
       'residencyAddress',
       'nationality',
       'speaksEnglish',
       'languageAtHome',
-      'motherPhone'
+      'motherPhone',
+      'parentEmail',
+      'parentSignature',
+      'headInjury',
+      'emergencyContact',
+      'emergencyPhone',
+      'medicalMedication',
+      'medicalDrugAllergy',
+      'medicalFoodAllergy',
+      'medicalEnvAllergy',
     ];
 
     for (const field of requiredFields) {
-      if (!formData[field as keyof FormData].trim()) {
+      const value = formData[field as keyof FormData];
+      if (!((typeof value === 'string' ? value : '')).trim()) {
         setError(`Please fill in all required fields marked with *`);
         return false;
       }
@@ -95,8 +159,9 @@ const RegistrationForm: React.FC = () => {
       // Prepare data for submission
       const submissionData = {
         ...formData,
+        parentSignDate: new Date(formData.parentSignDate).toISOString(),
         submissionDate: new Date().toISOString(),
-        schoolYear: '2024-2025'
+        schoolYear: '2025-2026'
       };
 
       const response = await fetch('https://eolu0ku36a9ofes.m.pipedream.net', {
@@ -131,10 +196,22 @@ const RegistrationForm: React.FC = () => {
         parentEmail: '',
         emergencyContact: '',
         emergencyPhone: '',
+        medicalMedication: '',
+        medicalDrugAllergy: '',
+        medicalFoodAllergy: '',
+        medicalEnvAllergy: '',
+        chronicConditions: '',
+        headInjury: '',
+        medicalDiagnosis: '',
+        medicalConsent: '',
+        parentSignature: '',
+        parentSignDate: '',
+        acceptforAccidentallyTreatment: '',
+
       });
     } catch (error) {
       console.error('Form submission error:', error);
-      setError('There was an error submitting your application. Please try again or contact us directly.');
+      setError(t('errorSubmitting'));
     } finally {
       setIsSubmitting(false);
     }
@@ -151,16 +228,16 @@ const RegistrationForm: React.FC = () => {
           </div>
         </div>
         <h3 className="text-lg font-semibold text-green-800 mb-2">
-          Application Submitted Successfully!
+          {t('submitOk')}
         </h3>
         <p className="text-green-700 mb-4">
-          Thank you for your application. We will contact you soon to discuss the next steps.
+          {t('submitDiscus')}
         </p>
         <button
           onClick={() => setSubmitted(false)}
           className="text-green-600 hover:text-green-700 font-medium"
         >
-          Submit Another Application
+          {t('submitAnotherApp')}
         </button>
       </div>
     );
@@ -169,9 +246,9 @@ const RegistrationForm: React.FC = () => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-8">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">
-        Student Registration Form 2024-2025
+        {t('registrationForm')}
       </h2>
-      
+
       {error && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
           <div className="flex">
@@ -182,7 +259,7 @@ const RegistrationForm: React.FC = () => {
           </div>
         </div>
       )}
-      
+
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Student First Name */}
@@ -274,7 +351,7 @@ const RegistrationForm: React.FC = () => {
               onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             >
-              <option value="">Select...</option>
+              <option value="">{t('select')}</option>
               <option value="yes">{t('yes')}</option>
               <option value="no">{t('no')}</option>
             </select>
@@ -300,7 +377,7 @@ const RegistrationForm: React.FC = () => {
           {/* Mother's Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('motherName')}
+              {t('motherName')}<span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -314,7 +391,7 @@ const RegistrationForm: React.FC = () => {
           {/* Father's Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('fatherName')}
+              {t('fatherName')}<span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -345,7 +422,7 @@ const RegistrationForm: React.FC = () => {
           {/* Father's Phone */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('fatherPhone')}
+              {t('fatherPhone')}<span className="text-red-500">*</span>
             </label>
             <input
               type="tel"
@@ -360,7 +437,7 @@ const RegistrationForm: React.FC = () => {
         {/* Parent's Email */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            {t('parentEmail')}
+            {t('parentEmail')}<span className="text-red-500">*</span>
           </label>
           <input
             type="email"
@@ -370,12 +447,12 @@ const RegistrationForm: React.FC = () => {
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
           />
         </div>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Emergency Contact */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('emergencyContact')}
+              {t('emergencyContact')}<span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -389,7 +466,7 @@ const RegistrationForm: React.FC = () => {
           {/* Emergency Phone */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('emergencyPhone')}
+              {t('emergencyPhone')}<span className="text-red-500">*</span>
             </label>
             <input
               type="tel"
@@ -401,31 +478,226 @@ const RegistrationForm: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-gray-50 p-4 rounded-lg">
-          <p className="text-sm text-gray-600">
-            <span className="text-red-500">*</span> Required fields. By submitting this form, you agree to be contacted by Al-Quran Islamic School regarding your application.
-          </p>
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-6">
+          <div>
+            <hr className="block text-sm font-medium text-gray-700 mb-1" />
+          </div>
+
+          <h3 className="text-xl font-semibold text-gray-800 mb-4">{t('medicalHistory')}</h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('medicalTaking')}</label>
+              <input type="text" name="medicalMedication" value={formData.medicalMedication} onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('allergy')}</label>
+              <input type="text" name="medicalDrugAllergy" value={formData.medicalDrugAllergy} onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('foodAllergy')}</label>
+              <input type="text" name="medicalFoodAllergy" value={formData.medicalFoodAllergy} onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('enviromentalAllergy')}</label>
+              <input type="text" name="medicalEnvAllergy" value={formData.medicalEnvAllergy} onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('chronicConditions')}</label>
+              <input type="text" name="chronicConditions" value={formData.chronicConditions} onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('headInjury')}</label>
+              <select name="headInjury" value={formData.headInjury} onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md">
+                <option value="">{t('select')}</option>
+                <option value="yes">{t('yes')}</option>
+                <option value="no">{t('no')}</option>
+              </select>
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('diagnosesByDoctor')}</label>
+              <input type="text" name="medicalDiagnosis" value={formData.medicalDiagnosis} onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {t('medicalConsent')} <span className="text-red-500">*</span>
+              </label>
+              <input type="text" name="medicalConsent" placeholder="Parent/Guardian initials" value={formData.medicalConsent} onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+            </div>
+          </div>
         </div>
 
+        {!showSubmit &&
+          <div className={remindRequiredConset ? "bg-red-50 p-4 border border-red-200 rounded-lg cursor-pointer hover:bg-red-100 transition-colors duration-200" : "bg-gray-50 p-4 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors duration-200"}
+            onClick={() => setShowModal(true)}
+          >
+            <p className="text-sm text-red-700">
+              <span className="text-red-500">*</span> {t('acceptTerms')}
+            </p>
+            {remindRequiredConset && (
+              <p className="text-sm text-red-500 mt-2">
+                <span className="text-red-500">*</span>{t('remindRequiredConset')}
+              </p>
+            )}
+          </div>
+        }
+
+        {showModal &&
+          <div className="fixed -inset-6 z-50 flex items-center justify-center bg-black/30 backdrop-blur-lg overflow-y-auto">
+            <div className="bg-white rounded-lg shadow-xl p-8 w-full max-w-3xl relative mx-4 my-12 mt-40">
+              <div className="space-y-6">
+
+                {/* Alert box */}
+                <div className="bg-amber-50 border border-amber-200 rounded-md p-4">
+                  <h3 className="text-lg font-semibold text-amber-800 mb-2">
+                    {t('reviewCarefully')}
+                  </h3>
+                  <p className="text-gray-800 text-md leading-relaxed">
+                    {t('acceptforAccidentallyTreatment')}<span className="text-red-500">*</span>
+                    <span className="text-red-500"> *</span>
+                  </p>
+                </div>
+
+                {/* Radio agreement list */}
+                <div>
+                  <ul className="list-disc pl-5 text-gray-800 space-y-4">
+                    {[
+                      t('conset1'),
+                      t('conset2'),
+                      t('conset3'),
+                      t('conset4'),
+                    ].map((item, index) => (
+                      <li key={index} className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <span className="text-sm md:text-base flex-1">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {showRequiredSign && <div
+                  className="bg-gray-50 p-4 rounded-lg text-center hover:bg-gray-100 transition cursor-pointer"
+                >
+                  <label className="block text-sm font-medium text-red-700">
+                    {t('requiredSign')} <span className="text-red-500">*</span>
+                  </label>
+                </div>}
+
+                {/* Signature pad */}
+                <div>
+                  <label className="block text-base font-medium text-gray-700 mb-2">{t('parentSignature')}<span className="text-red-500">*</span></label>
+                  <div className="border border-gray-300 rounded-md p-2 w-full bg-gray-50 flex items-center justify-center">
+                    <SignatureCanvas
+                      ref={signatureCanvasRef}
+                      penColor="purple"
+                      canvasProps={{
+                        width: 600,
+                        height: 200,
+                        className: 'signature-canvas bg-white rounded-md',
+                      }}
+                    />
+                  </div>
+
+                  {/* Buttons under signature pad */}
+                  <div className="flex justify-end space-x-4 mt-4">
+                    <button
+                      onClick={clearSignature}
+                      type="button"
+                      className="bg-gray-100 text-gray-800 py-2 px-4 rounded-md border border-gray-300 hover:bg-gray-200 transition"
+                    >
+                      {t('clearSignature')}
+                    </button>
+                  </div>
+                </div>
+
+
+                {/* Final Agreement */}
+                <div
+                  className="bg-gray-100 p-4 rounded-lg text-center hover:bg-gray-200 transition cursor-pointer"
+                  onClick={() => {
+                    if (
+                      !signatureCanvasRef.current ||
+                      signatureCanvasRef.current.isEmpty()
+                    ) {
+                      setShowRequiredSign(true);
+                      return;
+                    }
+                    saveSignature();
+                    setFormData(prev => ({
+                      ...prev,
+                      parentSignDate: new Date().toISOString(),
+                      acceptforAccidentallyTreatment: 'yes',
+                    }));
+                    setRemindRequiredConset(false);
+                    setShowSubmit(true);
+                    setShowModal(false);
+                  }}
+                >
+                  <label className="block text-sm font-medium text-gray-700">
+                    {t('acceptTerm1')} <span className="text-red-500">*</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        }
+
+
+        {
+          showSubmit &&
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <p className='text-sm text-gray-700 mb-2'>
+              <span className="text-red-500">*</span> {t('acceptTerm')}
+            </p>
+            <p className="text-sm text-gray-600 mb-2">
+            </p>
+            <p className="text-sm text-gray-600">
+              <span className="text-red-500">*</span> {t('requiredFields')}
+            </p>
+          </div>
+        }
+
+
         <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full bg-emerald-600 text-white py-3 px-4 rounded-md font-medium hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center"
+          type={!showSubmit ? "button" : "submit"}
+          disabled={showSubmit ? isSubmitting : false}
+          onClick={() => {
+            if (!signatureCanvasRef.current ||
+              signatureCanvasRef.current.isEmpty()) {
+              setRemindRequiredConset(true);
+            }
+          }}
+          className={
+            !showSubmit
+              ? "w-full bg-gray-200 text-white py-3 px-4 rounded-md font-medium hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center"
+              : "w-full bg-emerald-600 text-white py-3 px-4 rounded-md font-medium hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center"
+          }
         >
-          {isSubmitting ? (
-            <>
-              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Submitting...
-            </>
-          ) : (
-            t('submit')
-          )}
+          {
+            isSubmitting ? (
+              <>
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                {t('submiting')}
+              </>
+            ) : (
+              t('submit')
+            )}
         </button>
-      </form>
-    </div>
+
+      </form >
+    </div >
   );
 };
 

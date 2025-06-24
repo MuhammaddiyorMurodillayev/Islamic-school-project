@@ -76,6 +76,7 @@ const LanguageSelector: React.FC = () => {
 
   const handleLanguageSelect = (langCode: 'en' | 'uz' | 'ru') => {
     setLanguage(langCode);
+    localStorage.setItem('language',langCode);
     setIsOpen(false);
     buttonRef.current?.focus();
   };

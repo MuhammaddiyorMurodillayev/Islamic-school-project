@@ -179,29 +179,51 @@ const News: React.FC = () => {
 
   const articles = currentLanguage === 'en' ? articles_en : currentLanguage === 'uz' ? articles_uz : articles_ru;
 
+  const categories = [
+    { key: "all", label: t("all") },
+    { key: "academics", label: t("academics") },
+    { key: "schoolUpdates", label: t("schoolUpdates") },
+    { key: "events", label: t("events") },
+    { key: "values", label: t("values") }
+  ];
 
-  const categories = [t('all'), t('academics'), t('schoolUpdates'), t('events'), t('values')];
-  const [activeCategory, setActiveCategory] = React.useState(t('all'));
+  // Map qilish:
+  const mappedCategories = categories.map(category => ({
+    value: category.key,
+    label: category.label
+  }));
 
-  const filteredArticles = activeCategory === t('all')
+  console.log(mappedCategories);
+
+  const [activeCategory, setActiveCategory] = React.useState(categories[0]);
+
+  const filteredArticles = activeCategory.key === ('all')
     ? articles
-    : articles.filter(article => article.category === activeCategory);
+    : articles.filter(article => article.category === activeCategory.label);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-emerald-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              {t('news')}
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t('newsDesc')}
-            </p>
-          </div>
+      <section className="relative min-h-[55vh] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/images/image.png')",
+            backgroundPosition: 'center 60%'
+          }}
+        />
+        <div className="absolute inset-0 backdrop-blur-md bg-white/10" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            {t('news')}
+          </h1>
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+            {t('newsDesc')}
+          </p>
         </div>
       </section>
+
 
       {/* Category Filter */}
       <section className="py-8 bg-white border-b">
@@ -209,14 +231,14 @@ const News: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
               <button
-                key={category}
+                key={category.key}
                 onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${activeCategory === category
-                    ? 'bg-emerald-600 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-600'
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${activeCategory.key === category.key
+                  ? 'bg-emerald-600 text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-600'
                   }`}
               >
-                {category}
+                {category.label}
               </button>
             ))}
           </div>
@@ -286,9 +308,9 @@ const News: React.FC = () => {
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className={`text-xs font-medium px-3 py-1 rounded-full ${article.category === t('academics') ? 'bg-blue-100 text-blue-800' :
-                        article.category === t('events') ? 'bg-purple-100 text-purple-800' :
-                          article.category === t('values') ? 'bg-green-100 text-green-800' :
-                            'bg-gray-100 text-gray-800'
+                      article.category === t('events') ? 'bg-purple-100 text-purple-800' :
+                        article.category === t('values') ? 'bg-green-100 text-green-800' :
+                          'bg-gray-100 text-gray-800'
                       }`}>
                       {article.category}
                     </span>
