@@ -228,7 +228,7 @@ const RegistrationForm: React.FC = () => {
       console.log('submittedElement:', submittedElement);
       if (submittedElement) {
         const distanceToTop = submittedElement.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({ top: distanceToTop-100, behavior: 'smooth' });
+        window.scrollTo({ top: distanceToTop - 100, behavior: 'smooth' });
       }
 
     } catch (error) {
@@ -517,8 +517,8 @@ const RegistrationForm: React.FC = () => {
                 : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
             } />
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           {/* Emergency Contact */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -554,107 +554,107 @@ const RegistrationForm: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-6">
+
+        {/** Medical History Section */}
+
+        <div className='block justify-center items-center text-center w-full mb-4'>
+          <hr className=" text-sm font-medium text-gray-700 mb-1" />
+          <h3 className=" text-xl font-semibold mt-5 text-gray-800 mb-4">{t('medicalHistory')}</h3>
+        </div>
+
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           <div>
-            <hr className="block text-sm font-medium text-gray-700 mb-1" />
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              {t('medicalTaking')}<span className="text-red-500">*</span></label>
+            <input type="text" name="medicalMedication" value={formData.medicalMedication} onChange={handleChange}
+              className={
+                isNotFilled && formData.medicalMedication.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              }
+            />
           </div>
 
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">{t('medicalHistory')}</h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('medicalTaking')}<span className="text-red-500">*</span></label>
-              <input type="text" name="medicalMedication" value={formData.medicalMedication} onChange={handleChange}
-                className={
-                  isNotFilled && formData.medicalMedication.trim() === ''
-                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-                }
-              />
-            </div>
-
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('allergy')}<span className="text-red-500">*</span></label>
-              <input type="text" name="medicalDrugAllergy" value={formData.medicalDrugAllergy} onChange={handleChange}
-                className={
-                  isNotFilled && formData.medicalDrugAllergy.trim() === ''
-                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-                } />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('foodAllergy')}<span className="text-red-500">*</span></label>
-              <input type="text" name="medicalFoodAllergy" value={formData.medicalFoodAllergy} onChange={handleChange}
-                className={
-                  isNotFilled && formData.medicalFoodAllergy.trim() === ''
-                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-                } />
-            </div>
-
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('enviromentalAllergy')}<span className="text-red-500">*</span></label>
-              <input type="text" name="medicalEnvAllergy" value={formData.medicalEnvAllergy} onChange={handleChange}
-                className={
-                  isNotFilled && formData.medicalEnvAllergy.trim() === ''
-                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-                } />
-            </div>
-
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('chronicConditions')}<span className="text-red-500">*</span></label>
-              <input type="text" name="chronicConditions" value={formData.chronicConditions} onChange={handleChange}
-                className={
-                  isNotFilled && formData.chronicConditions.trim() === ''
-                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-                } />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('headInjury')}<span className="text-red-500">*</span></label>
-              <select name="headInjury" value={formData.headInjury} onChange={handleChange}
-                className={
-                  isNotFilled && formData.headInjury.trim() === ''
-                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-                }                >
-                <option value="">{t('select')}</option>
-                <option value="yes">{t('yes')}</option>
-                <option value="no">{t('no')}</option>
-              </select>
-            </div>
-
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('diagnosesByDoctor')}<span className="text-red-500">*</span></label>
-              <input type="text" name="medicalDiagnosis" value={formData.medicalDiagnosis} onChange={handleChange}
-                className={
-                  isNotFilled && formData.medicalDiagnosis.trim() === ''
-                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-                } />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('medicalConsent')} <span className="text-red-500">*</span>
-              </label>
-              <input type="text" name="medicalConsent" placeholder="Parent/Guardian initials" value={formData.medicalConsent} onChange={handleChange}
-                className={
-                  isNotFilled && formData.medicalConsent.trim() === ''
-                    ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                    : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-                } />
-            </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">{t('allergy')}<span className="text-red-500">*</span></label>
+            <input type="text" name="medicalDrugAllergy" value={formData.medicalDrugAllergy} onChange={handleChange}
+              className={
+                isNotFilled && formData.medicalDrugAllergy.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">{t('foodAllergy')}<span className="text-red-500">*</span></label>
+            <input type="text" name="medicalFoodAllergy" value={formData.medicalFoodAllergy} onChange={handleChange}
+              className={
+                isNotFilled && formData.medicalFoodAllergy.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
+          </div>
+
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">{t('enviromentalAllergy')}<span className="text-red-500">*</span></label>
+            <input type="text" name="medicalEnvAllergy" value={formData.medicalEnvAllergy} onChange={handleChange}
+              className={
+                isNotFilled && formData.medicalEnvAllergy.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
+          </div>
+
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">{t('chronicConditions')}<span className="text-red-500">*</span></label>
+            <input type="text" name="chronicConditions" value={formData.chronicConditions} onChange={handleChange}
+              className={
+                isNotFilled && formData.chronicConditions.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">{t('headInjury')}<span className="text-red-500">*</span></label>
+            <select name="headInjury" value={formData.headInjury} onChange={handleChange}
+              className={
+                isNotFilled && formData.headInjury.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              }                >
+              <option value="">{t('select')}</option>
+              <option value="yes">{t('yes')}</option>
+              <option value="no">{t('no')}</option>
+            </select>
+          </div>
+
+
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">{t('diagnosesByDoctor')}<span className="text-red-500">*</span></label>
+            <input type="text" name="medicalDiagnosis" value={formData.medicalDiagnosis} onChange={handleChange}
+              className={
+                isNotFilled && formData.medicalDiagnosis.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
+          </div>
+
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              {t('medicalConsent')} <span className="text-red-500">*</span>
+            </label>
+            <input type="text" name="medicalConsent" placeholder="Parent/Guardian initials" value={formData.medicalConsent} onChange={handleChange}
+              className={
+                isNotFilled && formData.medicalConsent.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
+          </div>
+
         </div>
 
         {!showSubmit &&
@@ -674,7 +674,7 @@ const RegistrationForm: React.FC = () => {
 
         {showModal &&
           <div
-            className="fixed -inset-6 z-50 flex items-center justify-center bg-black/30 backdrop-blur-lg overflow-y-auto"
+            className="fixed pt-20 inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-lg overflow-y-auto"
             tabIndex={-1}
             ref={el => {
               if (el && showModal) {
@@ -760,9 +760,9 @@ const RegistrationForm: React.FC = () => {
                       ref={signatureCanvasRef}
                       penColor="purple"
                       canvasProps={{
-                        width: 600,
-                        height: 200,
-                        className: 'signature-canvas bg-white rounded-md',
+                        height: 300,
+                        className: ' bg-white rounded-md w-auto min-w-full',
+                        style: { border: '1px solid #ccc', borderRadius: '4px' }
                       }}
                     />
                   </div>
