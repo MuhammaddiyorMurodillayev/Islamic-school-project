@@ -29,17 +29,17 @@ const Contact: React.FC = () => {
     {
       name: 'Location #1',
       address: '8967 Cincinnati Columbus Rd, West Chester Township, OH 45069',
-      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3082.8744444444444!2d-84.2977777!3d39.3422222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDIwJzMyLjAiTiA4NMKwMTcnNTIuMCJX!5e0!3m2!1sen!2sus!4v1234567890'
+      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.3060413971996!2d-84.3723498238894!3d39.34150797162362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x884052be64c5889b%3A0x96145deed3522fc2!2s8967%20Cincinnati%20Columbus%20Rd%2C%20West%20Chester%20Township%2C%20OH%2045069!5e0!3m2!1sen!2sus!4v1719434055507!5m2!1sen!2sus'
     },
     {
       name: 'Location #2',
       address: '7372 Kingsgate Way, West Chester, OH 45069',
-      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3082.8744444444444!2d-84.3877777!3d39.3522222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDIxJzA4LjAiTiA4NMKwMjMnMTYuMCJX!5e0!3m2!1sen!2sus!4v1234567890'
+      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.713738971328!2d-84.37002392401742!3d39.33297557160366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8840528e5d6a3c6f%3A0x653097ae4e38e604!2s7372%20Kingsgate%20Way%2C%20West%20Chester%2C%20OH%2045069!5e0!3m2!1sen!2sus!4v1719435781517!5m2!1sen!2sus'
     },
     {
       name: 'Location #3',
       address: '11231 Cornell Park Dr, Cincinnati OH 45242',
-      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3074.8744444444444!2d-84.4977777!3d39.2822222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDE2JzU2LjAiTiA4NMKwMjknNTIuMCJX!5e0!3m2!1sen!2sus!4v1234567890'
+      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3066.170520824816!2d-84.3499648249997!3d39.3670450716125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88404a840f5a8805%3A0x5e88be3d51c9055c!2s11231%20Cornell%20Park%20Dr%2C%20Cincinnati%2C%20OH%2045242!5e0!3m2!1sen!2sus!4v1719436120123!5m2!1sen!2sus'
     }
   ];
 

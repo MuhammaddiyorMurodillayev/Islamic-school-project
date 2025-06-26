@@ -7,8 +7,14 @@ const Programs: React.FC = () => {
 
   const programs = [
     {
-      title: t('preK'),
+      title: t('headStart'),
       age: languageChooser('Ages 3-4', '3-4 yosh', '3-4 лет'),
+      description: t('headStartDescription'),
+      features: [t('headStart1'), t('headStart2'), t('headStart3'), t('headStart4'),]
+    },
+    {
+      title: t('preK'),
+      age: languageChooser('Ages 4-5', '4-5 yosh', '4-5 лет'),
       description: t('preKDescription'),
       features: [t('preKF1'), t('preKF2'), t('preKF3'), t('preKF4'),]
     },
@@ -22,7 +28,7 @@ const Programs: React.FC = () => {
       title: t('elementary'),
       age: languageChooser('Ages 6-9', '6-9 yosh', '6-9 лет'),
       description: t('elementaryDescription'),
-      features: [t('elementaryF1'), t('elementaryF2'), t('elementaryF3'), t('elementaryF5'),]
+      features: [t('elementaryF1'), t('elementaryF2'), t('elementaryF3'), t('elementaryF4'), t('elementaryF5'), t('elementaryF6'), t('elementaryF7'), t('elementaryF8'), t('elementaryF9'), t('elementaryF10'),]
     },
     {
       title: t('madrasa'),
@@ -58,7 +64,7 @@ const Programs: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-[40vh] from-emerald-50 to-blue-50 bg-gradient-to-tr overflow-hidden">        
+      <section className="relative min-h-[40vh] from-emerald-50 to-blue-50 bg-gradient-to-tr overflow-hidden">
         <div className="absolute inset-0 backdrop-blur-md bg-white/10" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
@@ -90,18 +96,51 @@ const Programs: React.FC = () => {
                 </div>
                 <p className="text-gray-600 mb-4">{program.description}</p>
                 <ul className="space-y-2">
-                  {program.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-gray-700">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
-                      {feature}
-                    </li>
-                  ))}
+                  {(() => {
+                    if (program.features.length > 4) {
+                      const half = Math.ceil(program.features.length / 2);
+                      const left = program.features.slice(0, half);
+                      const right = program.features.slice(half);
+                      return (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+                          <ul className="space-y-2">
+                            {left.map((feature, idx) => (
+                              <li key={idx} className="flex items-center text-sm text-gray-700">
+                                <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                          <ul className="space-y-2">
+                            {right.map((feature, idx) => (
+                              <li key={idx + half} className="flex items-center text-sm text-gray-700">
+                                <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    }else{
+                      return (
+                        program.features.map( (feature, idx) => (
+                          <li key={idx} className='flex items-center text-sm text-gray-700'>
+                            <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
+                            {feature}
+                          </li>
+
+                        ))
+                      )
+                    }
+                  })
+                    ()}
                 </ul>
               </div>
             ))}
           </div>
         </div>
       </section>
+
 
       {/* Curriculum */}
       <section className="py-16 bg-gray-50">

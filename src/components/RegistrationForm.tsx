@@ -118,11 +118,8 @@ const RegistrationForm: React.FC = () => {
       'speaksEnglish',
       'languageAtHome',
       'motherPhone',
-      'parentEmail',
       'parentSignature',
       'headInjury',
-      'emergencyContact',
-      'emergencyPhone',
       'medicalMedication',
       'medicalDrugAllergy',
       'medicalFoodAllergy',
@@ -432,35 +429,29 @@ const RegistrationForm: React.FC = () => {
           {/* Mother's Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('motherName')}<span className="text-red-500">*</span>
+              {t('motherName')}
             </label>
             <input
               type="text"
               name="motherName"
               value={formData.motherName}
               onChange={handleChange}
-              className={
-                isNotFilled && formData.motherName.trim() === ''
-                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-              } />
+              className='w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+            />
           </div>
 
           {/* Father's Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('fatherName')}<span className="text-red-500">*</span>
+              {t('fatherName')}
             </label>
             <input
               type="text"
               name="fatherName"
               value={formData.fatherName}
               onChange={handleChange}
-              className={
-                isNotFilled && formData.fatherName.trim() === ''
-                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-              } />
+              className='w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+            />
           </div>
         </div>
 
@@ -486,71 +477,59 @@ const RegistrationForm: React.FC = () => {
           {/* Father's Phone */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('fatherPhone')}<span className="text-red-500">*</span>
+              {t('fatherPhone')}
             </label>
             <input
               type="tel"
               name="fatherPhone"
               value={formData.fatherPhone}
               onChange={handleChange}
-              className={
-                isNotFilled && formData.fatherPhone.trim() === ''
-                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-              } />
+              className='w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+            />
           </div>
         </div>
 
         {/* Parent's Email */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            {t('parentEmail')}<span className="text-red-500">*</span>
+            {t('parentEmail')}
           </label>
           <input
             type="email"
             name="parentEmail"
             value={formData.parentEmail}
             onChange={handleChange}
-            className={
-              isNotFilled && formData.parentEmail.trim() === ''
-                ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-            } />
+            className='w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+          />
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           {/* Emergency Contact */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('emergencyContact')}<span className="text-red-500">*</span>
+              {t('emergencyContact')}
             </label>
             <input
               type="text"
               name="emergencyContact"
               value={formData.emergencyContact}
               onChange={handleChange}
-              className={
-                isNotFilled && formData.emergencyContact.trim() === ''
-                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-              } />
+              className='w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+            />
           </div>
 
           {/* Emergency Phone */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('emergencyPhone')}<span className="text-red-500">*</span>
+              {t('emergencyPhone')}
             </label>
             <input
               type="tel"
               name="emergencyPhone"
               value={formData.emergencyPhone}
               onChange={handleChange}
-              className={
-                isNotFilled && formData.emergencyPhone.trim() === ''
-                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
-                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-              } />
+              className='w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+            />
           </div>
         </div>
 
@@ -724,13 +703,14 @@ const RegistrationForm: React.FC = () => {
                   </h3>
                   <p className="text-gray-800 text-md leading-relaxed">
                     {t('acceptforAccidentallyTreatment')}<span className="text-red-500">*</span>
-                    <span className="text-red-500"> *</span>
+                    
                   </p>
                 </div>
+                
 
                 {/* Radio agreement list */}
-                <div>
-                  <ul className="list-disc pl-5 text-gray-800 space-y-4">
+                <div className='pl-4'>
+                  <ul className="list-disc text-gray-800 ">
                     {[
                       t('conset1'),
                       t('conset2'),
@@ -738,10 +718,19 @@ const RegistrationForm: React.FC = () => {
                       t('conset4'),
                     ].map((item, index) => (
                       <li key={index} className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <span className="text-sm md:text-base flex-1">{item}</span>
+                        <span className="text-sm md:text-base flex-1"> - {item}</span>
                       </li>
                     ))}
                   </ul>
+                </div>
+
+                <div className='pl-4 text-gray-800'>
+                  <p>
+                    <span className="text-red-500">*</span>{t('credentials')}
+                  </p>
+                  <p>
+                    {t('underCredentials')}
+                  </p>
                 </div>
 
                 {showRequiredSign && <div

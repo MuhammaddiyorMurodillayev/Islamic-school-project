@@ -124,6 +124,14 @@ const translations = {
       "Consistent routines that promote learning and growth",
 
     // Programs Features
+    headStart: 'Head Start',
+    headStartDescription: "The Head Start program helps young children explore English, Math, Art, and Gym through fun, hands-on activities.",
+
+    headStart1: 'English',
+    headStart2: 'Math',
+    headStart3: 'Art',
+    headStart4: 'Gym',
+
     preKDescription:
       "Foundation building through play-based learning and early Islamic education",
     preKF1: "Basic Arabic letters",
@@ -143,7 +151,13 @@ const translations = {
     elementaryF1: "Core subjects",
     elementaryF2: "Quran memorization",
     elementaryF3: "Arabic language",
-    elementaryF4: "Science exploration",
+    elementaryF4: "Science",
+    elementaryF5: "Hifth",
+    elementaryF6: "Islamic Studies",
+    elementaryF7: "Language Art",
+    elementaryF8: "Math",
+    elementaryF9: "Gym",
+    elementaryF10: "Social studies",
 
     madrasaDescription:
       "Intensive Islamic education focusing on Quran and religious studies",
@@ -238,6 +252,9 @@ const translations = {
       "Before submitting the form, you must read and accept our Terms and Conditions.",
     acceptforAccidentallyTreatment:
       "* In the event of an accident or illness, if the school is unable to contact emergency contacts and the emergency is acute, I hereby authorize school staff to go to emergency medical care, including ambulance, emergency room. I hereby authorize the responsible physician to perform any emergency treatment necessary at my expense (leave initiation of consent) ",
+
+    credentials: `  By registering your child for the academic school year, you are agreeing to pay the tuition every month on time by the 5th day of each month. If the tuition is not paid by the 5th day of a month, center staff has the right not to accept a child to the center until tuition is fully paid. Tuition may not be refunded or transferred to the next months if the student didn't attend school for some reason. Abuse of the system and failure to maintain timely payments can result in dismissal of the student from the Center.`,
+    underCredentials: `By signing below, I agree with all the above mentioned payments.`,
 
     medicalHistory: "Student's Medical History",
     medicalTaking: "Medication currently taking",
@@ -341,7 +358,7 @@ const translations = {
     schoolCalendarDesc:
       "Important dates, holidays, and school events for the academic year",
     viewCalendar: "View Calendar",
-    supplyLists: "Supply Lists",
+    supplyLists: "Necessary Items",
     supplyListsDesc:
       "Required school supplies and materials for each grade level",
     downloadLists: "Download Lists",
@@ -513,6 +530,9 @@ const translations = {
     allRightReserved: "Al-Quron islom maktabi. Barcha huquqlar himoyalangan.",
     requiredFields: `Majburiy maydonlar. Ushbu shaklni topshirish orqali siz arizangiz bo'yicha Al- Quron Islom maktabi bilan bog'lanishga rozilik bildirasiz.`,
 
+    credentials: `Farzandingizni akademik o‘quv yili uchun ro‘yxatdan o‘tkazish orqali siz har oyda, oyning 5-sanasigacha, to‘lovni o‘z vaqtida amalga oshirishga rozilik bildirasiz. Agar to‘lov oyning 5-sanasigacha amalga oshirilmasa, markaz xodimlari to‘lov to‘liq amalga oshirilmaguncha bolaning markazga qabul qilinmasligi huquqiga ega. Agar bola biron sababga ko‘ra maktabga kelmagan bo‘lsa, to‘lov qaytarilmaydi yoki keyingi oylarga ko‘chirilmaydi. Tizimdan noto‘g‘ri foydalanish va o‘z vaqtida to‘lov qilmaslik bola markazdan chetlashtirilishiga olib kelishi mumkin.`,
+    underCredentials: `Quyida imzo chekish orqali men yuqorida ko‘rsatilgan barcha to‘lov shartlariga roziman.`,
+
     // Programs
     programsTitle: "Bizning dasturlarimiz",
     kindergarten: "Bog'cha dasturi",
@@ -539,6 +559,14 @@ const translations = {
       "O'rganish va o'sishni rag'batlantiruvchi izchil tartiblar",
 
     // Programs Features
+    headStart: 'Boshlanish',
+    headStartDescription: "Head Start dasturi yosh bolalarga qiziqarli, amaliy mashg‘ulotlar orqali ingliz tili, matematika, san’at va sport zalini o‘rganishga yordam beradi.",
+    headStart1: 'Ingliz tili',
+    headStart2: 'Matematika',
+    headStart3: 'San’at',
+    headStart4: 'Jismoniy tarbiya',
+
+
     preKDescription:
       "O‘yin orqali dastlabki o‘quv va islomiy taʼlim asoslarini shakllantirish",
     preKF1: "Arab alifbosi asoslari",
@@ -556,9 +584,16 @@ const translations = {
     elementaryDescription:
       "Islomiy taʼlim bilan integratsiyalashgan to‘liq o‘quv dasturi",
     elementaryF1: "Asosiy fanlar",
-    elementaryF2: "Qur’on yodlash",
+    elementaryF2: "Qur'on yodlash",
     elementaryF3: "Arab tili",
-    elementaryF4: "Fan bilan tanishish",
+    elementaryF4: "Tabiiy fanlar",
+    elementaryF5: "Hifz",
+    elementaryF6: "Islomiy fanlar",
+    elementaryF7: "Til san’ati",
+    elementaryF8: "Matematika",
+    elementaryF9: "Jismoniy tarbiya",
+    elementaryF10: "Ijtimoiy fanlar",
+
 
     madrasaDescription:
       "Qur'on va diniy ta'limga yo'naltirilgan intensiv islomiy ta'lim",
@@ -752,7 +787,7 @@ const translations = {
     schoolCalendarDesc:
       "O'quv yili uchun muhim sanalar, bayramlar va maktab tadbirlari",
     viewCalendar: "Taqvimni ko'rish",
-    supplyLists: "Ta'minot ro'yxatlari",
+    supplyLists: "Kerakli buyumlar",
     supplyListsDesc:
       "Har bir sinf darajasi uchun kerakli maktab buyumlari va materiallar",
     downloadLists: "Ro'yxatlarni yuklab olish",
@@ -928,6 +963,14 @@ const translations = {
       "Обязательные поля. Отправляя эту форму, вы соглашаетесь, чтобы с вами связались представители Исламской школы Аль-Коран по поводу вашей заявки.",
 
     // Programs
+
+    headStart: 'Ускоренный старт',
+    headStartDescription: "Программа Head Start помогает маленьким детям изучать английский язык, математику, искусство и физкультуру с помощью увлекательных практических занятий.",
+    headStart1: 'Английский язык',
+    headStart2: 'Математика',
+    headStart3: 'Искусство',
+    headStart4: 'Физкультура',
+
     programsTitle: "Наши программы",
     kindergarten: "Программа детского сада",
     preK: "Дошкольная программа",
@@ -971,7 +1014,14 @@ const translations = {
     elementaryF1: "Основные предметы",
     elementaryF2: "Заучивание Корана",
     elementaryF3: "Арабский язык",
-    elementaryF4: "Изучение науки",
+    elementaryF4: "Естественные науки",
+    elementaryF5: "Хифз",
+    elementaryF6: "Исламские науки",
+    elementaryF7: "Языковое искусство",
+    elementaryF8: "Математика",
+    elementaryF9: "Физкультура",
+    elementaryF10: "Общественные науки",
+
 
     madrasaDescription:
       "Интенсивное исламское образование с упором на Коран и религиозные науки",
@@ -1099,6 +1149,10 @@ const translations = {
     requiredSign:
       "Пожалуйста, подпишите. Поступая таким образом, вы соглашаетесь с нашими условиями.",
 
+    credentials: `Регистрируя своего ребёнка на учебный год, вы соглашаетесь оплачивать обучение каждый месяц вовремя — до 5-го числа. Если оплата не будет произведена до 5-го числа месяца, сотрудники центра имеют право не допустить ребёнка в центр до полной оплаты. Оплата не подлежит возврату или переносу на следующие месяцы, если ребёнок по какой-либо причине не посещал школу. Злоупотребление системой и несвоевременная оплата могут привести к отчислению ученика из Центра.`,
+    underCredentials: `Подписываясь ниже, я соглашаюсь со всеми вышеуказанными условиями оплаты.`,
+
+
     // Contact
     contactTitle: "Свяжитесь с нами",
     contactDesc:
@@ -1173,7 +1227,7 @@ const translations = {
     schoolCalendarDesc:
       "Важные даты, праздники и школьные мероприятия на учебный год",
     viewCalendar: "Посмотреть календарь",
-    supplyLists: "Списки принадлежностей",
+    supplyLists: "Необходимые предметы",
     supplyListsDesc:
       "Необходимые школьные принадлежности и материалы для каждого класса",
     downloadLists: "Скачать списки",

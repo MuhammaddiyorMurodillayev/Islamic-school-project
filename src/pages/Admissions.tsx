@@ -66,38 +66,52 @@ const Admissions: React.FC = () => {
   ];
 
   const tuitionTo3PM_en = [
-    { grade: 'Kindergarten', age: '5–6 years', tuition: '$500 (monthly)', due: '5th of each month' },
+    { grade: 'Head Start', age: '+3 years old ', tuition: '$550 (monthly)', due: 'due to 5th of each months' },
+    { grade: 'Pre-K', age: '+4 years old ', tuition: '$500 (monthly)', due: 'due to 5th of each months' },
+    { grade: 'Kindergarten', age: '5-6 years old ', tuition: '$500 (monthly)', due: 'due to 5th of each months' },
     { grade: '1st Grade', age: '6–7 years', tuition: '$500 (monthly)', due: '5th of each month' },
     { grade: '2nd Grade', age: '7–8 years', tuition: '$500 (monthly)', due: '5th of each month' }
   ];
 
   const tuitionTo3PM_uz = [
-    { grade: 'Bogʻcha', age: '5–6 yosh', tuition: '$500 (oyiga)', due: 'har oyning 5-sanasi' },
-    { grade: '1-sinf', age: '6–7 yosh', tuition: '$500 (oyiga)', due: 'har oyning 5-sanasi' },
-    { grade: '2-sinf', age: '7–8 yosh', tuition: '$500 (oyiga)', due: 'har oyning 5-sanasi' }
+    { grade: 'Head Start', age: '3 yoshdan boshlab', tuition: '$550 (oylik)', due: 'har oyning 5-sanasigacha' },
+    { grade: 'Pre-K', age: '4 yoshdan boshlab', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' },
+    { grade: 'Kindergarten', age: '5–6 yosh', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' },
+    { grade: '1-sinf', age: '6–7 yosh', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' },
+    { grade: '2-sinf', age: '7–8 yosh', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' }
+
   ];
 
   const tuitionTo3PM_ru = [
-    { grade: 'Детский сад', age: '5–6 лет', tuition: '$500 (в месяц)', due: '5-е число каждого месяца' },
-    { grade: '1-й класс', age: '6–7 лет', tuition: '$500 (в месяц)', due: '5-е число каждого месяца' },
-    { grade: '2-й класс', age: '7–8 лет', tuition: '$500 (в месяц)', due: '5-е число каждого месяца' }
+    { grade: 'Head Start', age: 'от 3 лет', tuition: '$550 (в месяц)', due: 'до 5-го числа каждого месяца' },
+    { grade: 'Pre-K', age: 'от 4 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' },
+    { grade: 'Детский сад (Kindergarten)', age: '5–6 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' },
+    { grade: '1 класс', age: '6–7 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' },
+    { grade: '2 класс', age: '7–8 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' }
+
   ];
 
   const tuitionTo3PM = currentLanguage === 'en' ? tuitionTo3PM_en : currentLanguage === 'uz' ? tuitionTo3PM_uz : tuitionTo3PM_ru;
 
   const tuitionTo5PM_en = [
+    { grade: 'Head Start', age: '+3 years old ', tuition: '$750 (monthly)', due: 'due to 5th of each months' },
+    { grade: 'Pre-K', age: '+4 years old ', tuition: '$700 (monthly)', due: 'due to 5th of each months' },
     { grade: 'Kindergarten', age: '5–6 years', tuition: '$700 (monthly)', due: '5th of each month' },
     { grade: '1st Grade', age: '6–7 years', tuition: '$700 (monthly)', due: '5th of each month' },
     { grade: '2nd Grade', age: '7–8 years', tuition: '$700 (monthly)', due: '5th of each month' }
   ];
 
   const tuitionTo5PM_uz = [
+    { grade: 'Head Start', age: '3 yoshdan boshlab', tuition: '$750 (oylik)', due: 'har oyning 5-sanasigacha' },
+    { grade: 'Pre-K', age: '4 yoshdan boshlab', tuition: '$700 (oylik)', due: 'har oyning 5-sanasigacha' },
     { grade: 'Bogʻcha', age: '5–6 yosh', tuition: '$700 (oyiga)', due: 'har oyning 5-sanasi' },
     { grade: '1-sinf', age: '6–7 yosh', tuition: '$700 (oyiga)', due: 'har oyning 5-sanasi' },
     { grade: '2-sinf', age: '7–8 yosh', tuition: '$700 (oyiga)', due: 'har oyning 5-sanasi' }
   ];
 
   const tuitionTo5PM_ru = [
+    { grade: 'Head Start', age: 'от 3 лет', tuition: '$750 (в месяц)', due: 'до 5-го числа каждого месяца' },
+    { grade: 'Pre-K', age: 'от 4 лет', tuition: '$700 (в месяц)', due: 'до 5-го числа каждого месяца' },
     { grade: 'Детский сад', age: '5–6 лет', tuition: '$700 (в месяц)', due: '5-е число каждого месяца' },
     { grade: '1-й класс', age: '6–7 лет', tuition: '$700 (в месяц)', due: '5-е число каждого месяца' },
     { grade: '2-й класс', age: '7–8 лет', tuition: '$700 (в месяц)', due: '5-е число каждого месяца' }
@@ -130,7 +144,7 @@ const Admissions: React.FC = () => {
     '2nd child discount: $50',
     '3rd child discount: $60',
     '4th child discount: $70',
-    '20% discount if tuition is paid in full for the school year'
+    // '20% discount if tuition is paid in full for the school year'
   ];
 
   const discounts_uz = [
@@ -138,7 +152,7 @@ const Admissions: React.FC = () => {
     '2-farzand uchun chegirma: $50',
     '3-farzand uchun chegirma: $60',
     '4-farzand uchun chegirma: $70',
-    'Agar o‘quv yili uchun to‘lov to‘liq oldindan to‘lansa, 20% chegirma'
+    // 'Agar o‘quv yili uchun to‘lov to‘liq oldindan to‘lansa, 20% chegirma'
   ];
 
   const discounts_ru = [
@@ -146,7 +160,7 @@ const Admissions: React.FC = () => {
     'Скидка для второго ребенка: $50',
     'Скидка для третьего ребенка: $60',
     'Скидка для четвертого ребенка: $70',
-    'Скидка 20% при полной оплате обучения за учебный год'
+    // 'Скидка 20% при полной оплате обучения за учебный год'
   ];
 
   const discounts = currentLanguage === 'en' ? discounts_en : currentLanguage === 'uz' ? discounts_uz : discounts_ru;
@@ -189,16 +203,9 @@ const Admissions: React.FC = () => {
         </div>
       </section>
 
-      {/* Registration Form */}
-      <section className="py-16 bg-gray-50"
-        id='registrationFormSubmitted'>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <RegistrationForm />
-        </div>
-      </section>
 
       {/* Timeline */}
-      <section className="py-16">
+      <section className="py-16 to-white from-emerald-600 bg-gradient-to-t">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('enrollmentTimeline')}</h2>
@@ -247,6 +254,7 @@ const Admissions: React.FC = () => {
             </div>
           </div>
           <br />
+
 
           <h3 className="text-2xl font-semibold mb-4">
             {languageChooser(
@@ -333,9 +341,16 @@ const Admissions: React.FC = () => {
         </p>
       </section>
 
+      {/* Registration Form */}
+      <section className="py-16 bg-gray-50 "
+        id='registrationFormSubmitted'>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RegistrationForm />
+        </div>
+      </section>
 
       {/* FAQs */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('faqs')}</h2>
