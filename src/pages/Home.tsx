@@ -26,7 +26,7 @@ const Home: React.FC = () => {
     {
       icon: <Clock className="h-8 w-8 text-emerald-600" />,
       title: t('fullDay'),
-      description: '8:00 AM - 3:30 PM'
+      description: '8:30 AM - 7:00 PM'
     }
   ];
 
