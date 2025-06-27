@@ -229,7 +229,7 @@ const translations = {
       "Students bring their own lunches. We provide guidance on halal lunch options.",
     question6: "What are your school hours?",
     answer6:
-      "Our full-day program runs from 8:00 AM to 3:30 PM, Monday through Friday.",
+      "Our full-day program runs from 8:30 AM to 7:00 PM, Monday through Friday.",
 
     program: "Program",
     financialAid: "Financial Aid",
