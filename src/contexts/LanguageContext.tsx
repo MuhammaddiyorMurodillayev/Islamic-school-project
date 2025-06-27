@@ -220,7 +220,7 @@ const translations = {
       "We maintain small class sizes of 12-15 students to ensure personalized attention.",
     question3: "Do you provide transportation?",
     answer3:
-      "We do not provide bus transportation. Parents are responsible for drop-off and pick-up.",
+      "Yes, transportation is available, but it comes with an additional fee on top of the monthly cost.",
     question4: "What is your curriculum like?",
     answer4:
       "We offer a comprehensive curriculum that integrates Islamic studies with core academic subjects including Math, English, Science, and Social Studies.",
@@ -652,7 +652,7 @@ const translations = {
     answer2: `Biz shaxsiy e'tiborni ta'minlash uchun 12-15 o'quvchidan iborat kichik sinflarni saqlaymiz.`,
     question3: "Siz transport bilan ta'minlaysizmi?",
     answer3:
-      "Biz avtobus transportini ta'minlamaymiz. Ota-onalar olib ketish va olib ketish uchun javobgardir.",
+      "Ha, transport mavjud, lekin oylik xarajat ustiga qo'shimcha haq olinadi.",
     question4: `Sizning o'quv dasturingiz qanday?`,
     answer4: `Biz islomiy fanlarni matematika, ingliz tili, fan va ijtimoiy fanlar kabi asosiy akademik fanlar bilan birlashtirgan keng qamrovli o‘quv dasturini taklif etamiz.`,
     question5: `Ovqat beriladimi?`,
@@ -1086,7 +1086,7 @@ const translations = {
       "Мы поддерживаем небольшие группы по 12–15 человек, чтобы обеспечить индивидуальный подход.",
     question3: "Предоставляете ли вы транспорт?",
     answer3:
-      "Мы не предоставляем автобусный транспорт. Родители несут ответственность за доставку и сбор детей.",
+      "Да, транспорт доступен, но за него взимается дополнительная плата сверх ежемесячной стоимости.",
     question4: "Какова ваша учебная программа?",
     answer4:
       "Мы предлагаем комплексную учебную программу, которая объединяет исламоведение с основными академическими предметами, включая математику, английский язык, естественные науки и обществознание.",

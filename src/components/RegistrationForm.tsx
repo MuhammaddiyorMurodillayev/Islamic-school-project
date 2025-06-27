@@ -118,6 +118,7 @@ const RegistrationForm: React.FC = () => {
       'speaksEnglish',
       'languageAtHome',
       'motherPhone',
+      'fatherPhone',
       'parentSignature',
       'headInjury',
       'medicalMedication',
@@ -477,15 +478,18 @@ const RegistrationForm: React.FC = () => {
           {/* Father's Phone */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t('fatherPhone')}
+              {t('fatherPhone')}<span className="text-red-500">*</span>
             </label>
             <input
               type="tel"
               name="fatherPhone"
               value={formData.fatherPhone}
               onChange={handleChange}
-              className='w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-            />
+              className={
+                isNotFilled && formData.fatherPhone.trim() === ''
+                  ? 'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500'
+                  : 'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
+              } />
           </div>
         </div>
 
@@ -703,10 +707,10 @@ const RegistrationForm: React.FC = () => {
                   </h3>
                   <p className="text-gray-800 text-md leading-relaxed">
                     {t('acceptforAccidentallyTreatment')}<span className="text-red-500">*</span>
-                    
+
                   </p>
                 </div>
-                
+
 
                 {/* Radio agreement list */}
                 <div className='pl-4'>
