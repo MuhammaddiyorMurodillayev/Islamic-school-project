@@ -190,7 +190,7 @@ const Contact: React.FC = () => {
               <Clock className="h-12 w-12 text-purple-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('schoolHours')}</h3>
               <p className="text-gray-600">{languageChooser('Monday - Friday', 'Dushanba – Juma', 'Понедельник – Пятница')}</p>
-              <p className="text-gray-600">8:00 AM - 3:30 PM</p>
+              <p className="text-gray-600">8:30 AM - 7:00 PM</p>
             </div>
           </div>
         </div>
