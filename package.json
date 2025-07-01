@@ -12,6 +12,11 @@
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-tooltip": "^1.2.7",
+    "@react-google-maps/api": "^2.20.7",
+    "@supabase/supabase-js": "^2.50.2",
+    "@vis.gl/react-google-maps": "^1.5.3",
+    "antd": "^5.26.3",
+    "antd-img-crop": "^4.25.0",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

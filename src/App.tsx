@@ -10,6 +10,7 @@ import ParentResources from './pages/ParentResources';
 import Gallery from './pages/Gallery';
 import News from './pages/News';
 import Contact from './pages/Contact';
+import AdminPanel from './pages/AdminPanel';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/news" element={<News />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/admin" element={<AdminPanel />} />
             </Routes>
           </main>
           <Footer />

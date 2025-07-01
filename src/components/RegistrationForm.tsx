@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import SignatureCanvas from 'react-signature-canvas';
+import SearchWithGoogleMap from './SearchWithGoogleMap';
 
 interface FormData {
   studentFirstName: string;
@@ -31,6 +32,7 @@ interface FormData {
 }
 
 const RegistrationForm: React.FC = () => {
+
   const { t } = useLanguage();
   const [formData, setFormData] = useState<FormData>({
     studentFirstName: '',
@@ -102,7 +104,7 @@ const RegistrationForm: React.FC = () => {
       ...prev,
       [name]: value,
     }));
-    // Clear error when user starts typing
+    
     if (error) {
       setError(null);
     }
@@ -372,7 +374,7 @@ const RegistrationForm: React.FC = () => {
           <label className="block text-sm font-medium text-gray-700 mb-1">
             {t('residencyAddress')} <span className="text-red-500">*</span>
           </label>
-          <input
+          {/* <input
             type="text"
             name="residencyAddress"
             required
@@ -381,7 +383,8 @@ const RegistrationForm: React.FC = () => {
             className={isNotFilled && formData.residencyAddress.trim() === '' ?
               'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500' :
               'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
-            } />
+            } /> */}
+            <SearchWithGoogleMap isNotFilled={isNotFilled}  handleChange={handleChange} formData={formData}  />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
