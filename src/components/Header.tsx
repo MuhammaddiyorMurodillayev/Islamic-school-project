@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import LanguageSelector from './LanguageSelector';
+import { supabase } from '../subabaseClient';
+
 
 const Header: React.FC = () => {
+
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useLanguage();
   const location = useLocation();
+  const [logoUrl, setLogoUrl] = useState('');
 
   const navigation = [
     { name: t('home'), href: '/' },
@@ -20,6 +25,27 @@ const Header: React.FC = () => {
     { name: t('contact'), href: '/contact' },
   ];
 
+  useEffect(() => {
+    const fetchLogo = async () => {
+      const { data, error } = await supabase
+        .from('images')
+        .select()
+        .eq('id', 'bf61e4fe-0d76-420f-8666-b419e02f6564') 
+
+      if (error || !data || data.length === 0) {
+        console.warn("Logo topilmadi, default ishlatilmoqda.");
+        setLogoUrl('https://i.postimg.cc/MTZZBBGX/Logo-Islamic-School-Al-quran.jpg');
+      } else {        
+        setLogoUrl(data[0].url);
+      }
+    };
+
+    fetchLogo();
+  }, []);
+
+
+
+
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
       <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,7 +54,7 @@ const Header: React.FC = () => {
           <div className="flex items-center flex-shrink-0">
             <Link to="/" className="flex items-center space-x-4">
               <img
-                src="https://i.postimg.cc/MTZZBBGX/Logo-Islamic-School-Al-quran.jpg"
+                src={logoUrl}
                 alt="Al-Quran Islamic School"
                 className="h-20 w-20 object-contain rounded-lg shadow-md"
               />
@@ -46,11 +72,10 @@ const Header: React.FC = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
-                    location.pathname === item.href
-                      ? 'text-emerald-700 bg-emerald-50'
-                      : 'text-gray-600 hover:text-emerald-700 hover:bg-emerald-50'
-                  }`}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 whitespace-nowrap ${location.pathname === item.href
+                    ? 'text-emerald-700 bg-emerald-50'
+                    : 'text-gray-600 hover:text-emerald-700 hover:bg-emerald-50'
+                    }`}
                 >
                   {item.name}
                 </Link>
@@ -89,23 +114,22 @@ const Header: React.FC = () => {
                   key={item.href}
                   to={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                    location.pathname === item.href
-                      ? 'text-emerald-700 bg-emerald-50'
-                      : 'text-gray-600 hover:text-emerald-700 hover:bg-emerald-50'
-                  }`}
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${location.pathname === item.href
+                    ? 'text-emerald-700 bg-emerald-50'
+                    : 'text-gray-600 hover:text-emerald-700 hover:bg-emerald-50'
+                    }`}
                 >
                   {item.name}
                 </Link>
               ))}
-              
+
               {/* Mobile Language Selector */}
               <div className="px-3 py-4 border-t border-gray-200 mt-4">
                 <div className="flex items-center justify-center">
                   <LanguageSelector />
                 </div>
               </div>
-              
+
               <Link
                 to="/admissions"
                 onClick={() => setIsMenuOpen(false)}

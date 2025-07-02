@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import SignatureCanvas from 'react-signature-canvas';
-import SearchWithGoogleMap from './SearchWithGoogleMap';
+import LocationAutocomplete from './LocationAutocomplete';
 
 interface FormData {
   studentFirstName: string;
@@ -99,16 +99,31 @@ const RegistrationForm: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; 
+    
     setFormData(prev => ({
       ...prev,
       [name]: value,
     }));
-    
+
     if (error) {
       setError(null);
     }
   };
+
+  const handleResidencyAdress = (adress: string) => {
+
+    console.log(adress);
+    
+    setFormData(prev => ({
+      ...prev,
+      ['residencyAddress']: adress,
+    }));
+
+    if (error) {
+      setError(null);
+    }
+  }
 
   const validateForm = (): boolean => {
     const requiredFields = [
@@ -384,7 +399,7 @@ const RegistrationForm: React.FC = () => {
               'w-full px-3 py-2 border  rounded-md focus:outline-none shadow focus:ring-2 focus:ring-red-500 focus:border-red-500 border-red-500' :
               'w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300'
             } /> */}
-            <SearchWithGoogleMap isNotFilled={isNotFilled}  handleChange={handleChange} formData={formData}  />
+            <LocationAutocomplete isNotFilled={isNotFilled}  handleResidencyAdress={handleResidencyAdress} formData={formData} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
