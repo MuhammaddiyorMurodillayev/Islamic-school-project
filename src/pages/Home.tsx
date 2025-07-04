@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, MapPin, Clock, GraduationCap, Heart, BookOpen } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import ImageLoader from '../components/ImageLoader';
+import { supabase } from '../subabaseClient';
+
+type Image = {
+  id: string,
+  url: string,
+}
 
 const Home: React.FC = () => {
   const { t } = useLanguage();
   const currentLanguage = useLanguage().language;
+  const [images, setImages] = useState<Image[]>([])
 
   const quickFacts = [
     {
@@ -47,6 +55,36 @@ const Home: React.FC = () => {
       description: t('caringCommunityDesc')
     }
   ];
+
+
+  useEffect(() => {
+    const fetchImageFromDB = async () => {
+      const { data, error } = await supabase
+        .from("images")
+        .select(`
+                      id,
+                      url
+                  `);
+
+
+      if (error || !data) {
+        console.error("❌ Error fetching image:", error?.message);
+        return;
+      }
+
+      setImages(
+        data
+          .filter(image => image.id !== 'bf61e4fe-0d76-420f-8666-b419e02f6564')
+          .slice(0, 3)
+          .map(image => ({
+            id: image.id,
+            url: image.url
+          }))
+      );
+    };
+
+    fetchImageFromDB();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -130,27 +168,14 @@ const Home: React.FC = () => {
             <p className="text-xl text-gray-600">{t('ourSchoolLifeDesc')}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden">
-              <img
-                src="https://i.postimg.cc/MTc9P0D4/photo-2025-06-04-12-16-53.jpg"
-                alt="Students learning"
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden">
-              <img
-                src="https://i.postimg.cc/3JjncxXK/photo-2025-06-04-12-18-20.jpg"
-                alt="Classroom activities"
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden">
-              <img
-                src="https://i.postimg.cc/gkpK8bf1/photo-2025-06-04-12-17-40.jpg"
-                alt="Happy students"
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
+
+            {images.map(image => {
+              return (
+                <div className="aspect-w-16 aspect-h-12 rounded-lg overflow-hidden">
+                  <ImageLoader url={image.url} imageId={image.id} style='w-full h-64 object-cover hover:scale-105 transition-transform duration-300' />
+                </div>
+              )
+            })}
           </div>
           <div className="text-center mt-8">
             <Link

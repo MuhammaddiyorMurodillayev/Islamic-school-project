@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Heart, Target, Users, Award } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import ImageLoader from '../components/ImageLoader';
+import { supabase } from '../subabaseClient';
+
+type Image = {
+  id: string,
+  url: string
+}
 
 const About: React.FC = () => {
   const { t } = useLanguage();
   const currentLanguage = useLanguage().language;
+  const [images, setImages] = useState<Image[]>([])
 
   const values = [
     {
@@ -28,6 +36,37 @@ const About: React.FC = () => {
       description: t('characterDevelopmentDesc')
     }
   ];
+
+
+  useEffect(() => {
+    const fetchImageFromDB = async () => {
+      const { data, error } = await supabase
+        .from("images")
+        .select(`
+                        id,
+                        url
+                    `);
+
+
+      if (error || !data) {
+        console.error("❌ Error fetching image:", error?.message);
+        return;
+      }
+
+      setImages(
+        data
+          .filter(image => image.id !== 'bf61e4fe-0d76-420f-8666-b419e02f6564')
+          .slice(0, 2)
+          .map(image => ({
+            id: image.id,
+            url: image.url
+          }))
+      );
+    };
+
+    fetchImageFromDB();
+  }, []);
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -108,16 +147,12 @@ const About: React.FC = () => {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <img
-                src="https://i.postimg.cc/3JjncxXK/photo-2025-06-04-12-18-20.jpg"
-                alt="School building"
-                className="rounded-lg shadow-md"
-              />
-              <img
-                src="https://i.postimg.cc/gkpK8bf1/photo-2025-06-04-12-17-40.jpg"
-                alt="Students and teachers"
-                className="rounded-lg shadow-md"
-              />
+
+              {images.map( (image: Image) => {
+                return(
+                  <ImageLoader imageId={image.id} url={image.url} style='rounded-lg shadow-md' />
+                )
+              })}
             </div>
           </div>
         </div>

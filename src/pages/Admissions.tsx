@@ -1,9 +1,36 @@
 import { CheckCircle, Calendar, DollarSign, HelpCircle } from 'lucide-react';
 import { languageChooser, useLanguage } from '../contexts/LanguageContext';
 import RegistrationForm from '../components/RegistrationForm';
+import { useEffect, useState } from 'react';
+import { supabase } from '../subabaseClient';
+
+type Lang = {
+  en: string,
+  ru: string,
+  uz: string
+}
+
+type Tuition = {
+  id: string;
+  grade: Lang;
+  age: Lang;
+  tuition: Lang;
+  due: Lang;
+}
+
+type TuitionFee = {
+  id: string;
+  feeType: Lang;
+  amount: Lang;
+  due: Lang;
+}
 
 const Admissions: React.FC = () => {
-  const { t, language: currentLanguage } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const [tuition_5, setTuition_5] = useState<Tuition[]>([]);
+  const [tuition_3, setTuition_3] = useState<Tuition[]>([]);
+  const [tuition_fee, setTuition_fee] = useState<TuitionFee[]>([]);
 
   // console.log(currentLanguage);
 
@@ -65,79 +92,173 @@ const Admissions: React.FC = () => {
     }
   ];
 
-  const tuitionTo3PM_en = [
-    { grade: 'Head Start', age: '+3 years old ', tuition: '$550 (monthly)', due: 'due to 5th of each months' },
-    { grade: 'Pre-K', age: '+4 years old ', tuition: '$500 (monthly)', due: 'due to 5th of each months' },
-    { grade: 'Kindergarten', age: '5-6 years old ', tuition: '$500 (monthly)', due: 'due to 5th of each months' },
-    { grade: '1st Grade', age: '6–7 years', tuition: '$500 (monthly)', due: '5th of each month' },
-    { grade: '2nd Grade', age: '7–8 years', tuition: '$500 (monthly)', due: '5th of each month' }
-  ];
+  // const tuitionTo3PM_en = [
+  //   { grade: 'Head Start', age: '+3 years old ', tuition: '$550 (monthly)', due: 'due to 5th of each months' },
+  //   { grade: 'Pre-K', age: '+4 years old ', tuition: '$500 (monthly)', due: 'due to 5th of each months' },
+  //   { grade: 'Kindergarten', age: '5-6 years old ', tuition: '$500 (monthly)', due: 'due to 5th of each months' },
+  //   { grade: '1st Grade', age: '6–7 years', tuition: '$500 (monthly)', due: '5th of each month' },
+  //   { grade: '2nd Grade', age: '7–8 years', tuition: '$500 (monthly)', due: '5th of each month' }
+  // ];
 
-  const tuitionTo3PM_uz = [
-    { grade: 'Head Start', age: '3 yoshdan boshlab', tuition: '$550 (oylik)', due: 'har oyning 5-sanasigacha' },
-    { grade: 'Pre-K', age: '4 yoshdan boshlab', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' },
-    { grade: 'Kindergarten', age: '5–6 yosh', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' },
-    { grade: '1-sinf', age: '6–7 yosh', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' },
-    { grade: '2-sinf', age: '7–8 yosh', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' }
+  // const tuitionTo3PM_uz = [
+  //   { grade: 'Head Start', age: '3 yoshdan boshlab', tuition: '$550 (oylik)', due: 'har oyning 5-sanasigacha' },
+  //   { grade: 'Pre-K', age: '4 yoshdan boshlab', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' },
+  //   { grade: 'Kindergarten', age: '5–6 yosh', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' },
+  //   { grade: '1-sinf', age: '6–7 yosh', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' },
+  //   { grade: '2-sinf', age: '7–8 yosh', tuition: '$500 (oylik)', due: 'har oyning 5-sanasigacha' }
 
-  ];
+  // ];
 
-  const tuitionTo3PM_ru = [
-    { grade: 'Head Start', age: 'от 3 лет', tuition: '$550 (в месяц)', due: 'до 5-го числа каждого месяца' },
-    { grade: 'Pre-K', age: 'от 4 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' },
-    { grade: 'Детский сад (Kindergarten)', age: '5–6 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' },
-    { grade: '1 класс', age: '6–7 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' },
-    { grade: '2 класс', age: '7–8 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' }
+  // const tuitionTo3PM_ru = [
+  //   { grade: 'Head Start', age: 'от 3 лет', tuition: '$550 (в месяц)', due: 'до 5-го числа каждого месяца' },
+  //   { grade: 'Pre-K', age: 'от 4 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' },
+  //   { grade: 'Детский сад (Kindergarten)', age: '5–6 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' },
+  //   { grade: '1 класс', age: '6–7 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' },
+  //   { grade: '2 класс', age: '7–8 лет', tuition: '$500 (в месяц)', due: 'до 5-го числа каждого месяца' }
 
-  ];
+  // ];
 
-  const tuitionTo3PM = currentLanguage === 'en' ? tuitionTo3PM_en : currentLanguage === 'uz' ? tuitionTo3PM_uz : tuitionTo3PM_ru;
+  // const tuitionTo3PM = language === 'en' ? tuitionTo3PM_en : language === 'uz' ? tuitionTo3PM_uz : tuitionTo3PM_ru;
 
-  const tuitionTo5PM_en = [
-    { grade: 'Head Start', age: '+3 years old ', tuition: '$750 (monthly)', due: 'due to 5th of each months' },
-    { grade: 'Pre-K', age: '+4 years old ', tuition: '$700 (monthly)', due: 'due to 5th of each months' },
-    { grade: 'Kindergarten', age: '5–6 years', tuition: '$700 (monthly)', due: '5th of each month' },
-    { grade: '1st Grade', age: '6–7 years', tuition: '$700 (monthly)', due: '5th of each month' },
-    { grade: '2nd Grade', age: '7–8 years', tuition: '$700 (monthly)', due: '5th of each month' }
-  ];
+  // const tuitionTo5PM_en = [
+  //   { grade: 'Head Start', age: '+3 years old ', tuition: '$750 (monthly)', due: 'due to 5th of each months' },
+  //   { grade: 'Pre-K', age: '+4 years old ', tuition: '$700 (monthly)', due: 'due to 5th of each months' },
+  //   { grade: 'Kindergarten', age: '5–6 years', tuition: '$700 (monthly)', due: '5th of each month' },
+  //   { grade: '1st Grade', age: '6–7 years', tuition: '$700 (monthly)', due: '5th of each month' },
+  //   { grade: '2nd Grade', age: '7–8 years', tuition: '$700 (monthly)', due: '5th of each month' }
+  // ];
 
-  const tuitionTo5PM_uz = [
-    { grade: 'Head Start', age: '3 yoshdan boshlab', tuition: '$750 (oylik)', due: 'har oyning 5-sanasigacha' },
-    { grade: 'Pre-K', age: '4 yoshdan boshlab', tuition: '$700 (oylik)', due: 'har oyning 5-sanasigacha' },
-    { grade: 'Bogʻcha', age: '5–6 yosh', tuition: '$700 (oyiga)', due: 'har oyning 5-sanasi' },
-    { grade: '1-sinf', age: '6–7 yosh', tuition: '$700 (oyiga)', due: 'har oyning 5-sanasi' },
-    { grade: '2-sinf', age: '7–8 yosh', tuition: '$700 (oyiga)', due: 'har oyning 5-sanasi' }
-  ];
+  // const tuitionTo5PM_uz = [
+  //   { grade: 'Head Start', age: '3 yoshdan boshlab', tuition: '$750 (oylik)', due: 'har oyning 5-sanasigacha' },
+  //   { grade: 'Pre-K', age: '4 yoshdan boshlab', tuition: '$700 (oylik)', due: 'har oyning 5-sanasigacha' },
+  //   { grade: 'Bogʻcha', age: '5–6 yosh', tuition: '$700 (oyiga)', due: 'har oyning 5-sanasi' },
+  //   { grade: '1-sinf', age: '6–7 yosh', tuition: '$700 (oyiga)', due: 'har oyning 5-sanasi' },
+  //   { grade: '2-sinf', age: '7–8 yosh', tuition: '$700 (oyiga)', due: 'har oyning 5-sanasi' }
+  // ];
 
-  const tuitionTo5PM_ru = [
-    { grade: 'Head Start', age: 'от 3 лет', tuition: '$750 (в месяц)', due: 'до 5-го числа каждого месяца' },
-    { grade: 'Pre-K', age: 'от 4 лет', tuition: '$700 (в месяц)', due: 'до 5-го числа каждого месяца' },
-    { grade: 'Детский сад', age: '5–6 лет', tuition: '$700 (в месяц)', due: '5-е число каждого месяца' },
-    { grade: '1-й класс', age: '6–7 лет', tuition: '$700 (в месяц)', due: '5-е число каждого месяца' },
-    { grade: '2-й класс', age: '7–8 лет', tuition: '$700 (в месяц)', due: '5-е число каждого месяца' }
-  ];
+  // const tuitionTo5PM_ru = [
+  //   { grade: 'Head Start', age: 'от 3 лет', tuition: '$750 (в месяц)', due: 'до 5-го числа каждого месяца' },
+  //   { grade: 'Pre-K', age: 'от 4 лет', tuition: '$700 (в месяц)', due: 'до 5-го числа каждого месяца' },
+  //   { grade: 'Детский сад', age: '5–6 лет', tuition: '$700 (в месяц)', due: '5-е число каждого месяца' },
+  //   { grade: '1-й класс', age: '6–7 лет', tuition: '$700 (в месяц)', due: '5-е число каждого месяца' },
+  //   { grade: '2-й класс', age: '7–8 лет', tuition: '$700 (в месяц)', due: '5-е число каждого месяца' }
+  // ];
 
-  const tuitionTo5PM = currentLanguage === 'en' ? tuitionTo5PM_en : currentLanguage === 'uz' ? tuitionTo5PM_uz : tuitionTo5PM_ru;
+  useEffect(() => {
 
-  const fees_en = [
-    { type: 'Registration (non-refundable)', amount: '$50 per student', due: 'At registration' },
-    { type: 'Supplies & Materials (non-refundable)', amount: '$130 per student', due: 'With first tuition payment' },
-    { type: 'Academic Resources (non-refundable)', amount: '$70 per student', due: 'At registration' }
-  ];
+    async function fetchdataFromDb() {
+      const { data, error } = await supabase
+        .from('tuition_5')
+        .select();
 
-  const fees_uz = [
-    { type: 'Ro‘yxatdan o‘tish (qaytarilmaydi)', amount: '$50 har bir o‘quvchi uchun', due: 'Ro‘yxatdan o‘tishda' },
-    { type: 'Jihozlar va materiallar (qaytarilmaydi)', amount: '$130 har bir o‘quvchi uchun', due: 'Birinchi oylik to‘lov bilan birga' },
-    { type: 'O‘quv resurslari (qaytarilmaydi)', amount: '$70 har bir o‘quvchi uchun', due: 'Ro‘yxatdan o‘tishda' }
-  ];
+      if (error) {
+        console.log('error', error.message);
+        return;
+      }
 
-  const fees_ru = [
-    { type: 'Регистрационный сбор (не возвращается)', amount: '$50 за ученика', due: 'При регистрации' },
-    { type: 'Материалы и принадлежности (не возвращается)', amount: '$130 за ученика', due: 'С первым платежом за обучение' },
-    { type: 'Учебные ресурсы (не возвращается)', amount: '$70 за ученика', due: 'При регистрации' }
-  ];
+      setTuition_5(
+        data
+          .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+          .map(e => {
+            return {
+              id: e.id,
+              grade: e.grade,
+              tuition: e.tuition,
+              due: e.due_date,
+              age: e.age,
+            }
+          }))
 
-  const fees = currentLanguage === 'en' ? fees_en : currentLanguage === 'uz' ? fees_uz : fees_ru;
+      // console.log(tuition_5);
+
+    }
+
+    fetchdataFromDb();
+  }, [])
+
+
+  useEffect(() => {
+
+    async function fetchdataFromDb() {
+      const { data, error } = await supabase
+        .from('tuition_3')
+        .select();
+
+      if (error) {
+        console.log('error', error.message);
+        return;
+      }
+
+      setTuition_3(data
+        .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+        .map(e => {
+          return {
+            id: e.id,
+            grade: e.grade,
+            tuition: e.tuition,
+            due: e.due_date,
+            age: e.age,
+          }
+        }))
+
+      // console.log(tuition_5);
+
+    }
+
+    fetchdataFromDb();
+  }, [])
+
+
+  useEffect(() => {
+
+    async function fetchdataFromDb() {
+      const { data, error } = await supabase
+        .from('tuition_fee')
+        .select();
+
+      if (error) {
+        console.log('error', error.message);
+        return;
+      }
+
+      setTuition_fee(data
+        .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+        .map(e => {
+          return {
+            id: e.id,
+            feeType: e.fee_type,
+            amount: e.amount,
+            due: e.due,
+          }
+        }))
+
+      // console.log(tuition_5);
+
+    }
+
+    fetchdataFromDb();
+  }, [])
+  // const tuitionTo5PM = currentLanguage === 'en' ? tuitionTo5PM_en : currentLanguage === 'uz' ? tuitionTo5PM_uz : tuitionTo5PM_ru;
+
+  // const fees_en = [
+  //   { type: 'Registration (non-refundable)', amount: '$50 per student', due: 'At registration' },
+  //   { type: 'Supplies & Materials (non-refundable)', amount: '$130 per student', due: 'With first tuition payment' },
+  //   { type: 'Academic Resources (non-refundable)', amount: '$70 per student', due: 'At registration' }
+  // ];
+
+  // const fees_uz = [
+  //   { type: 'Ro‘yxatdan o‘tish (qaytarilmaydi)', amount: '$50 har bir o‘quvchi uchun', due: 'Ro‘yxatdan o‘tishda' },
+  //   { type: 'Jihozlar va materiallar (qaytarilmaydi)', amount: '$130 har bir o‘quvchi uchun', due: 'Birinchi oylik to‘lov bilan birga' },
+  //   { type: 'O‘quv resurslari (qaytarilmaydi)', amount: '$70 har bir o‘quvchi uchun', due: 'Ro‘yxatdan o‘tishda' }
+  // ];
+
+  // const fees_ru = [
+  //   { type: 'Регистрационный сбор (не возвращается)', amount: '$50 за ученика', due: 'При регистрации' },
+  //   { type: 'Материалы и принадлежности (не возвращается)', amount: '$130 за ученика', due: 'С первым платежом за обучение' },
+  //   { type: 'Учебные ресурсы (не возвращается)', amount: '$70 за ученика', due: 'При регистрации' }
+  // ];
+
+  // const fees = language === 'en' ? fees_en : language === 'uz' ? fees_uz : fees_ru;
 
   const discounts_en = [
     'For siblings with same parents:',
@@ -163,7 +284,14 @@ const Admissions: React.FC = () => {
     // 'Скидка 20% при полной оплате обучения за учебный год'
   ];
 
-  const discounts = currentLanguage === 'en' ? discounts_en : currentLanguage === 'uz' ? discounts_uz : discounts_ru;
+  const discounts = language === 'en' ? discounts_en : language === 'uz' ? discounts_uz : discounts_ru;
+
+
+  function getTranslation(word?: Lang): string {
+    if (!word) return '';
+    return word[language] || word.en || word.uz || word.ru || '';
+  }
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -272,12 +400,12 @@ const Admissions: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {tuitionTo3PM.map((row, i) => (
+              {tuition_3.map((row, i) => (
                 <tr key={i} className="border-b">
-                  <td className="p-3">{row.grade}</td>
-                  <td className="p-3">{row.age}</td>
-                  <td className="p-3">{row.tuition}</td>
-                  <td className="p-3">{row.due}</td>
+                  <td className="p-3">{getTranslation(row.grade)}</td>
+                  <td className="p-3">{getTranslation(row.age)}</td>
+                  <td className="p-3">{getTranslation(row.tuition)}</td>
+                  <td className="p-3">{getTranslation(row.due)}</td>
                 </tr>
               ))}
             </tbody>
@@ -296,12 +424,12 @@ const Admissions: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {tuitionTo5PM.map((row, i) => (
+              {tuition_5.map((row, i) => (
                 <tr key={i} className="border-b">
-                  <td className="p-3">{row.grade}</td>
-                  <td className="p-3">{row.age}</td>
-                  <td className="p-3">{row.tuition}</td>
-                  <td className="p-3">{row.due}</td>
+                  <td className="p-3">{getTranslation(row.grade)}</td>
+                  <td className="p-3">{getTranslation(row.age)}</td>
+                  <td className="p-3">{getTranslation(row.tuition)}</td>
+                  <td className="p-3">{getTranslation(row.due)}</td>
                 </tr>
               ))}
             </tbody>
@@ -317,11 +445,11 @@ const Admissions: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {fees.map((fee, i) => (
+              {tuition_fee.map((fee, i) => (
                 <tr key={i} className="border-b">
-                  <td className="p-3">{fee.type}</td>
-                  <td className="p-3">{fee.amount}</td>
-                  <td className="p-3">{fee.due}</td>
+                  <td className="p-3">{getTranslation(fee.feeType)}</td>
+                  <td className="p-3">{getTranslation(fee.amount)}</td>
+                  <td className="p-3">{getTranslation(fee.due)}</td>
                 </tr>
               ))}
             </tbody>
