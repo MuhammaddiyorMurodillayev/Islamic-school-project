@@ -19,7 +19,7 @@ const AdminLogin = ({ setAdmin }: AdminLoginProps) => {
         if (userName === 'usernameforalquranschool.net' && password === '09ac0bcc-34d5-478b-bd64-25918eaee5e3') {
             setAdmin(true)
         }
-        else {
+        else {  
             message.error(' Password or Username incorrect!!');
         }
         // console.log("Login", userName, password);

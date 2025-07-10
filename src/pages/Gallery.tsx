@@ -37,12 +37,20 @@ const Gallery: React.FC = () => {
     const fetchCategories = async () => {
       const { data, error } = await supabase
         .from("category_image")
-        .select("en, ru, uz");
+        .select(`
+          id,
+          en,
+          ru,
+          uz,
+          images!category ( id )`)
+        .not('images', 'is', null);
 
       if (error || !data) {
         console.error("❌ Error fetching categories:", error?.message);
         return;
       }
+
+   
 
       const catOptions: CategoryOption[] = [
         { key: 'all', label: t('all') }, // qo‘shimcha "All" varianti

@@ -7,11 +7,13 @@ import { supabase } from "../subabaseClient";
 import TuitionFee from "../components/TuitionFee";
 import _ from "lodash";
 import AdminLogin from "../components/AdminLogin";
+import ChangePhoneAndEmail from "../components/ChangePhoneAndEmail";
+import ChangeWorkHours from "../components/ChangeWorkHours";
 
 function AdminPanel() {
 
 
-    const [isAdmin, setAdmin] = useState<boolean>(false);
+    const [isAdmin, setAdmin] = useState<boolean>(true);
 
     const [trigger, setTrigger] = useState<number>(0);
     const [trigger2, setTrigger2] = useState<number>(50);
@@ -23,7 +25,7 @@ function AdminPanel() {
     }])
 
     // console.log(trigger,trigger2,trigger3);
-    
+
 
 
     useEffect(() => {
@@ -45,8 +47,8 @@ function AdminPanel() {
         }
         loadAllImages();
     }, [])
-    
-    
+
+
 
     useEffect(() => {
         const adminStatus = localStorage.getItem("isAdmin");
@@ -65,18 +67,18 @@ function AdminPanel() {
             }
         }
     }, []);
-    
+
     useEffect(() => {
         if (isAdmin) {
             localStorage.setItem("isAdmin", "true");
             localStorage.setItem("adminTime", Date.now().toString());
         }
     }, [isAdmin]);
-    
+
     if (!isAdmin) {
         return <AdminLogin setAdmin={setAdmin} />;
     }
-        
+
     return (
         <div className="w-full">
 
@@ -130,6 +132,15 @@ function AdminPanel() {
                     <TuitionFee key={trigger3} setTrigger={setTrigger3} trigger={trigger} tableName='tuition_fee' titleTable="Change Tuition fee" />
                 </div>
             </div>
+            <div className="flex flex-col text-center mt-10 items-center justify-center">
+                <ChangePhoneAndEmail />
+            </div>
+            <div className="mx-10">
+                <hr className=" bg-gray-300 shadow h-0.5" />
+            </div>
+            {/* <div className="flex flex-col text-center my-10 items-center justify-center">
+                <ChangeWorkHours />
+            </div> */}
         </div>
 
     );

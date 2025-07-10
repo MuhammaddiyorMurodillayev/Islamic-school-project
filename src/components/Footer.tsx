@@ -1,11 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, Facebook, Instagram, Send } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { supabase } from '../subabaseClient';
 
 const Footer: React.FC = () => {
+  type FormData = {
+    phone: string[];
+    email: string[];
+  };
+
+  const [formData, setFormData] = useState<FormData>({
+    phone: [],
+    email: [],
+  });
   const { t } = useLanguage();
 
+  useEffect(() => {
+    const loadAllData = async () => {
+      const { data, error } = await supabase
+        .from("contacts")
+        .select(`id, phones, emails`);
+
+      if (error || !data || data.length === 0) {
+        console.log("Topilmadi yoki bo‘sh");
+        return;
+      }
+
+      const contact = data[0];
+
+      const phones: string[] =
+        contact.phones?.map((e: any) => e.value) || [];
+
+      const emails: string[] =
+        contact.emails?.map((e: any) => e.value) || [];
+
+      setFormData({
+        phone: phones,
+        email: emails,
+      });
+    };
+
+
+
+    loadAllData();
+  }, []);
+
+ 
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -51,18 +92,18 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-semibold mb-4">{t('contact')}</h4>
             <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-emerald-400" />
-                <span className="text-gray-300 text-sm">(347) 486-9469</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-emerald-400" />
-                <span className="text-gray-300 text-sm">(631) 691-8207</span>
-              </div>
-              <div className="flex items-start space-x-2">
-                <Mail className="h-4 w-4 text-emerald-400 mt-0.5" />
-                <span className="text-gray-300 text-sm">alquranislamicschool@gmail.com</span>
-              </div>
+              {formData.phone.map((phone: string) =>
+                <div key={'key' + phone} className="flex items-center space-x-2">
+                  <Phone className="h-4 w-4 text-emerald-400" />
+                  <span className="text-gray-300 text-sm">{phone}</span>
+                </div>
+              )}
+              {formData.email.map((e: string) =>
+                <div key={'key' + e} className="flex items-center space-x-2">
+                  <Mail className="h-4 w-4 text-emerald-400 mt-0.5" />
+                  <span className="text-gray-300 text-sm">{e}</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -70,25 +111,25 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-semibold mb-4">{t('followUs')}</h4>
             <div className="flex space-x-4">
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
+              <a
+                href="https://facebook.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 <Facebook className="h-6 w-6" />
               </a>
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
+              <a
+                href="https://instagram.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 <Instagram className="h-6 w-6" />
               </a>
-              <a 
-                href="https://t.me/Alquranohio" 
-                target="_blank" 
+              <a
+                href="https://t.me/Alquranohio"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
               >

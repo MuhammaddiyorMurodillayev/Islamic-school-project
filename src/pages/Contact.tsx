@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { languageChooser, useLanguage } from '../contexts/LanguageContext';
+import { supabase } from '../subabaseClient';
 
 interface ContactFormData {
   fullName: string;
@@ -24,6 +25,46 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  type FormData = {
+    phone: string[];
+    email: string[];
+  };
+
+  const [formData1, setFormData1] = useState<FormData>({
+    phone: [],
+    email: [],
+  });
+
+  useEffect(() => {
+    const loadAllData = async () => {
+      const { data, error } = await supabase
+        .from("contacts")
+        .select(`id, phones, emails`);
+
+      if (error || !data || data.length === 0) {
+        console.log("Topilmadi yoki bo‘sh");
+        return;
+      }
+
+      const contact = data[0];
+
+      const phones: string[] =
+        contact.phones?.map((e: any) => e.value) || [];
+
+      const emails: string[] =
+        contact.emails?.map((e: any) => e.value) || [];
+
+      setFormData1({
+        phone: phones,
+        email: emails,
+      });
+    };
+
+
+
+    loadAllData();
+  }, []);
 
   const locations = [
     {
@@ -178,13 +219,16 @@ const Contact: React.FC = () => {
             <div className="text-center p-6 bg-emerald-50 rounded-lg">
               <Phone className="h-12 w-12 text-emerald-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('phone')}</h3>
-              <p className="text-gray-600">(347) 486-9469</p>
-              <p className="text-gray-600">(631) 691-8207</p>
+              {formData1.phone.map((p: string) =>
+                <p className="text-gray-600">{p}</p>
+              )}
             </div>
             <div className="text-center p-6 bg-blue-50 rounded-lg">
               <Mail className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('email')}</h3>
-              <p className="text-gray-600">alquranislamicschool@gmail.com</p>
+              {formData1.email.map((p: string) =>
+                <p className="text-gray-600">{p}</p>
+              )}
             </div>
             <div className="text-center p-6 bg-purple-50 rounded-lg">
               <Clock className="h-12 w-12 text-purple-600 mx-auto mb-4" />
