@@ -13,7 +13,7 @@ import ChangeWorkHours from "../components/ChangeWorkHours";
 function AdminPanel() {
 
 
-    const [isAdmin, setAdmin] = useState<boolean>(true);
+    const [isAdmin, setAdmin] = useState<boolean>(false);
 
     const [trigger, setTrigger] = useState<number>(0);
     const [trigger2, setTrigger2] = useState<number>(50);
@@ -132,15 +132,17 @@ function AdminPanel() {
                     <TuitionFee key={trigger3} setTrigger={setTrigger3} trigger={trigger} tableName='tuition_fee' titleTable="Change Tuition fee" />
                 </div>
             </div>
-            <div className="flex flex-col text-center mt-10 items-center justify-center">
-                <ChangePhoneAndEmail />
+            <div className="flex gap-20 px-10 py-10  justify-center text-center">
+                <div className="w-1/4">
+                    <ChangePhoneAndEmail />
+                </div>
+                <div className="w-0.5 shadow bg-gray-300 h-auto mx-5" style={{ height: 'auto' }}>
+                    {/* Bu joy ajratilgan, ammo ko‘rinmaydi — shunchaki chiziq */}
+                </div>
+                <div className="w-1/2">
+                    <ChangeWorkHours />
+                </div>
             </div>
-            <div className="mx-10">
-                <hr className=" bg-gray-300 shadow h-0.5" />
-            </div>
-            {/* <div className="flex flex-col text-center my-10 items-center justify-center">
-                <ChangeWorkHours />
-            </div> */}
         </div>
 
     );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { languageChooser, useLanguage } from '../contexts/LanguageContext';
 import { supabase } from '../subabaseClient';
+import { message } from 'antd';
 
 interface ContactFormData {
   fullName: string;
@@ -36,6 +37,17 @@ const Contact: React.FC = () => {
     email: [],
   });
 
+  type Lang = "uz" | "ru" | "en";
+
+  type WorkHourEntry = {
+    id?: string;
+    hour: Record<Lang, string>;
+    day: Record<Lang, string>;
+  };
+
+  const [workHours, setWorkHours] = useState<WorkHourEntry[]>([]);
+
+
   useEffect(() => {
     const loadAllData = async () => {
       const { data, error } = await supabase
@@ -59,6 +71,29 @@ const Contact: React.FC = () => {
         phone: phones,
         email: emails,
       });
+
+
+      const fetchData = async () => {
+        const { data, error } = await supabase.from("workHour").select();
+
+        if (error) {
+          console.error("Error fetching:", error);
+          message.error("Ma'lumotlarni yuklashda xatolik");
+          return;
+        }
+
+        if (data) {
+          const formatted = data.map((item) => ({
+            id: item.id,
+            hour: item.hour,
+            day: item.day,
+
+          }));
+          setWorkHours(formatted);
+        }
+      };
+
+      fetchData();
     };
 
 
@@ -233,8 +268,14 @@ const Contact: React.FC = () => {
             <div className="text-center p-6 bg-purple-50 rounded-lg">
               <Clock className="h-12 w-12 text-purple-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('schoolHours')}</h3>
-              <p className="text-gray-600">{languageChooser('Monday - Friday', 'Dushanba – Juma', 'Понедельник – Пятница')}</p>
-              <p className="text-gray-600">8:30 AM - 7:00 PM</p>
+
+              {workHours.map((entry, index) =>
+                <p key={index} className="text-gray-600">{languageChooser(entry.day.en, entry.day.uz, entry.day.ru)}</p>
+              )}
+              {workHours.map((entry, index) =>
+                <p key={index} className="text-gray-600">{languageChooser(entry.hour.en, entry.hour.uz, entry.hour.ru)}</p>
+              )}
+
             </div>
           </div>
         </div>
