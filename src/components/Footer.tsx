@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
             <h4 className="font-semibold mb-4">{t('followUs')}</h4>
             <div className="flex space-x-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/alquranislamicschool"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
                 <Facebook className="h-6 w-6" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/alquran_islamic_school"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
